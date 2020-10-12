@@ -9,6 +9,8 @@ void VanillaEngine::init(void)
 
     InputMgr.init();
 
+    ResourceMgr.init();
+
     entity.spawn();
 
 }
@@ -41,20 +43,27 @@ void VanillaEngine::closeUI(void)
 
 void VanillaEngine::close(void)
 {
-
+    ResourceMgr.close();
+    InputMgr.close();
     closeUI();
 }
 
 
 void VanillaEngine::update(void)
 {
-    InputMgr.getInputs(window);
+    // game loop
+    while (!glfwWindowShouldClose(window))
+    {
+        InputMgr.getInputs(window);
 
-    if (InputMgr.keyIsPressed(GLFW_KEY_W)) entity.moveUp(); 
-    if (InputMgr.keyIsPressed(GLFW_KEY_A)) entity.moveLeft();
-    if (InputMgr.keyIsPressed(GLFW_KEY_S)) entity.moveDown();
-    if (InputMgr.keyIsPressed(GLFW_KEY_D)) entity.moveRight();
+        if (InputMgr.keyIsPressed(GLFW_KEY_W)) entity.moveUp(); 
+        if (InputMgr.keyIsPressed(GLFW_KEY_A)) entity.moveLeft();
+        if (InputMgr.keyIsPressed(GLFW_KEY_S)) entity.moveDown();
+        if (InputMgr.keyIsPressed(GLFW_KEY_D)) entity.moveRight();
  
-    entity.draw();
+        entity.draw();
+
+        glfwSwapBuffers(window);
+    }
 }
     

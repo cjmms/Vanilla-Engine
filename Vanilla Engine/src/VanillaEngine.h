@@ -1,7 +1,12 @@
 #pragma once
 
 #include "InputManager.h"
+#include "ResourceManager.h"
 #include "Entity.h"
+
+//static InputManager InputMgr;
+//static ResourceManager ResourceMgr;
+
 
 class VanillaEngine
 {
@@ -10,6 +15,7 @@ public:
 
 	GLFWwindow* window;
 	InputManager InputMgr;
+	ResourceManager ResourceMgr;
 
 	Entity entity;
 	

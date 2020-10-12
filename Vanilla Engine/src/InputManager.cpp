@@ -8,6 +8,8 @@ InputManager::~InputManager()
 
 void InputManager::getInputs(GLFWwindow* window)
 {
+    glfwPollEvents();
+
     // iterate all events, update map
     for (auto it : keyboardEventMap)
         keyboardEventMap[it.first] = glfwGetKey(window, it.first) == GLFW_PRESS;
@@ -32,3 +34,6 @@ void InputManager::init()		// real instructor
     keyboardEventMap[GLFW_KEY_D] = false;
 
 }
+
+void InputManager::close()
+{}

@@ -9,14 +9,14 @@ Entity::Entity(const Vector2D& position)
 	:position(position), health(10.0f)
 {}
 
-void Entity::spawn(void) const
+void Entity::spawn(void) 
 {
     float vertices[] = {
         // positions         
-         -0.25f,  0.25f,
-        -0.25f, -0.25f,
-         0.25f,  0.25f,
-         0.25f, -0.25f
+        -0.25f,  0.25f, 0.0, 1.0,
+        -0.25f, -0.25f, 0.0, 0.0,
+         0.25f,  0.25f, 1.0, 1.0,
+         0.25f, -0.25f, 1.0, 0.0
     };
 
     GLuint VBO, VAO;
@@ -29,10 +29,13 @@ void Entity::spawn(void) const
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // VAO
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    ResourceManager::createTexture(TexID, "res/Texture/wood.jpg");
 }
 
 
@@ -50,6 +53,8 @@ void Entity::draw(void) const
 {
     Shader shader("src/demo.shader");
 
+    shader.setInt("diffuse", 0);
+    glActiveTexture(GL_TEXTURE0);
 
     shader.setVec2("position", position);
     shader.Bind();

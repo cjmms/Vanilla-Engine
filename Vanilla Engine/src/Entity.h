@@ -1,10 +1,11 @@
 #pragma once
 
-
+#include "ResourceManager.h"
+//#include "VanillaEngine.h"
 #include "Shader.h" 
 
 // Base class for all game objects
-
+//extern ResourceManager ResourceMgr;
 
 class Entity
 {
@@ -17,7 +18,7 @@ public:
 	void setPosition(const Vector2D& position);
 	void setHealth(float health);
 
-	void spawn(void) const;
+	void spawn(void);
 
 	void draw(void) const;
 
@@ -31,6 +32,7 @@ public:
 private:
 	float health;	// Do all entities have health?
 	Vector2D position;
+	unsigned int TexID;
 	
 };
 
