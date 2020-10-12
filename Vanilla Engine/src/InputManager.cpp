@@ -37,3 +37,5 @@ void InputManager::init()		// real instructor
 
 void InputManager::close()
 {}
+
+

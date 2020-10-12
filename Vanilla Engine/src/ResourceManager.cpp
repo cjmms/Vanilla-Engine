@@ -46,7 +46,6 @@ void ResourceManager::createTexture(unsigned int &id, const char* filePath)
 
 
 
-ResourceManager::ResourceManager(){}
 ResourceManager::~ResourceManager(){}
 
 
@@ -56,3 +55,10 @@ void ResourceManager::init(void)
 
 void ResourceManager::close(void)
 {}
+
+
+ResourceManager& ResourceManager::getInstance()
+{
+    static ResourceManager ResourceMgr;
+    return ResourceMgr;
+}

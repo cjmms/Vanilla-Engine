@@ -12,8 +12,9 @@ private:
 	std::unordered_map<int, bool> keyboardEventMap;
 	
 public:
-	InputManager();		// do nothing
+	
 	~InputManager();	// do nothing
+	InputManager();
 	
 	void init();		// real instructor
 
@@ -22,5 +23,9 @@ public:
 	void getInputs(GLFWwindow* window);
 
 	bool keyIsPressed(int key);
+
+	//static InputManager& getInstance();
+
+
 };
 

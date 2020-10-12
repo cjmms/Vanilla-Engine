@@ -5,7 +5,7 @@
 #include "Entity.h"
 
 //static InputManager InputMgr;
-//static ResourceManager ResourceMgr;
+//ResourceManager ResourceMgr;
 
 
 class VanillaEngine
@@ -15,7 +15,7 @@ public:
 
 	GLFWwindow* window;
 	InputManager InputMgr;
-	ResourceManager ResourceMgr;
+	//ResourceManager ResourceMgr;
 
 	Entity entity;
 	
