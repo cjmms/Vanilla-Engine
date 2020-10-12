@@ -1,46 +1,21 @@
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <iostream>
-
-#include "Entity.h"
+#include "VanillaEngine.h"
 
 
 int main()
 {
-    GLFWwindow* window;
-
-    // Initialize the library
-    if (!glfwInit()) return -1;
-
-    // Create a windowed mode window and its OpenGL context
-    window = glfwCreateWindow(1200, 1000, "Vanilla", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
-    }
+    VanillaEngine Engine;
+    Engine.init();
     
 
-    // Make the window's context current
-    glfwMakeContextCurrent(window);
-
-    if (glewInit() != GLEW_OK) std::cout << "init error" << std::endl; 
-
-
-    Entity entity(0.4);
-    entity.spawn();
-
-
     // Loop until the user closes the window
-    while (!glfwWindowShouldClose(window))
+    while (!glfwWindowShouldClose(Engine.window))
     {
-        // Render here
-        entity.draw();
+        Engine.update();
 
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(Engine.window);
         glfwPollEvents();
     }
 
-    glfwTerminate();
+    Engine.close();
     return 0;
 }

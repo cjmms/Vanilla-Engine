@@ -9,7 +9,7 @@ Entity::Entity(const Vector2D& position)
 	:position(position), health(10.0f)
 {}
 
-void Entity::spawn(void)
+void Entity::spawn(void) const
 {
     float vertices[] = {
         // positions         
@@ -32,11 +32,7 @@ void Entity::spawn(void)
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    Shader shader("src/demo.shader");
-
-
-    shader.setVec2("position", position);
-    shader.Bind();
+    
 }
 
 
@@ -50,10 +46,40 @@ void Entity::setHealth(float health)
 	this->health = health;
 }
 
-void Entity::draw(void)
+void Entity::draw(void) const
 {
+    Shader shader("src/demo.shader");
+
+
+    shader.setVec2("position", position);
+    shader.Bind();
+
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+
+void Entity::moveUp()
+{
+    position.y += 0.01f;
+}
+
+
+void Entity::moveDown(void)
+{
+    position.y -= 0.01f;
+}
+
+
+void Entity::moveLeft(void)
+{
+    position.x -= 0.01f;
+}
+
+
+void Entity::moveRight(void)
+{
+    position.x += 0.01f;
 }
