@@ -54,6 +54,7 @@ void VanillaEngine::update(void)
     // game loop
     while (!glfwWindowShouldClose(window))
     {
+        UpdateFrameTime();
         InputMgr.getInputs(window);
 
         if (InputMgr.keyIsPressed(GLFW_KEY_W)) entity.moveUp();
@@ -64,6 +65,27 @@ void VanillaEngine::update(void)
         entity.draw();
 
         glfwSwapBuffers(window);
+        limiteFPS(60);
     }
 }
     
+// object moves base on FPS, this is for testing FPS only
+void VanillaEngine::limiteFPS(int fps)
+{
+    float currentTime = glfwGetTime();
+    float waitTime = 1.0f / fps - (currentTime - lastFrame);
+
+    while (glfwGetTime() - currentTime < waitTime);
+}
+
+
+
+
+void VanillaEngine::UpdateFrameTime()
+{
+    float currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+
+    std::cout << "Frame time: " << deltaTime * 1000.0f << "  FPS: " << 1.0f / deltaTime << std::endl;
+}

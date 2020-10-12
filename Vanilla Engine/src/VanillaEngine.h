@@ -4,18 +4,19 @@
 #include "ResourceManager.h"
 #include "Entity.h"
 
-//static InputManager InputMgr;
-//ResourceManager ResourceMgr;
+
 
 
 class VanillaEngine
 {
+private:
+	float lastFrame, deltaTime;
 
 public:	
 
 	GLFWwindow* window;
 	InputManager InputMgr;
-	//ResourceManager ResourceMgr;
+	
 
 	Entity entity;
 	
@@ -27,5 +28,11 @@ public:
 	void closeUI(void);
 
 	void update(void);
+
+	void UpdateFrameTime();
+
+	void limiteFPS(int fps);
+
+
 };
 
