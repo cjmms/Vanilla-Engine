@@ -26,9 +26,5 @@ public:
 	float magnitude(void) const;
 	const Vector2D normalize(void) const;
 	
-
-
-
-
 };
 

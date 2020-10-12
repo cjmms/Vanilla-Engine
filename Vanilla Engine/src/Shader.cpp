@@ -155,3 +155,18 @@ void Shader::setInt(const std::string& name, int value)
 {
     setInt(name.c_str(), value);
 }
+
+
+void Shader::setVec2(const char* name, Vector2D vec)
+{
+    unsigned int location = getUniformLocation(name);
+    //glUniform2fv(location, 1, glm::value_ptr(vec));
+    //glUniform2fv(location, 1, vec.x, vec.y);
+    glProgramUniform2f(rendererID, location, vec.x, vec.y);
+}
+
+
+void Shader::setVec2(const std::string& name, Vector2D vec)
+{
+    setVec2(name.c_str(), vec);
+}
