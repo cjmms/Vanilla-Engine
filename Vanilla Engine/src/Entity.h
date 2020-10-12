@@ -1,5 +1,6 @@
 #pragma once
 
+
 // Base class for all game objects
 
 
@@ -12,6 +13,7 @@ public:
 
 private:
 	float health;	// Do all entities have health?
+
 
 };
 

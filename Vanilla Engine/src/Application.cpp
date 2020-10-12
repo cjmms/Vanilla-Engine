@@ -28,9 +28,10 @@ int main()
 
     float vertices[] = {
         // positions         
-         0.5f, -0.5f, 0.0f,    // bottom right
-        -0.5f, -0.5f, 0.0f,   // bottom left
-         0.0f,  0.5f, 0.0f   // top
+         -0.25f,  0.25f,  
+        -0.25f, -0.25f,  
+         0.25f,  0.25f,  
+         0.25f, -0.25f 
     };
 
     GLuint VBO, VAO;
@@ -43,7 +44,7 @@ int main()
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // VAO
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     Shader shader("src/demo.shader");
@@ -58,7 +59,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
