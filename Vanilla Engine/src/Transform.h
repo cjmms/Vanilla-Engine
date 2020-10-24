@@ -1,7 +1,8 @@
 #pragma once
+#include "Component.h"
+#include "Vector2D.h"
 
-
-class Transform
+class Transform : public Component
 {
 
 public:
@@ -10,8 +11,7 @@ public:
 	
 	void update();
 
-	float x, y;
-	GameObject* owner;
+	Vector2D position;
 
 };
 

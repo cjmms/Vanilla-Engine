@@ -1,14 +1,13 @@
 #pragma once
-class Controller
+#include "Component.h"
+
+class Controller : public Component
 {
 public:
 	Controller();
 	~Controller();
 	
 	void update();
-
-	GameObject* owner;
-	
 
 
 

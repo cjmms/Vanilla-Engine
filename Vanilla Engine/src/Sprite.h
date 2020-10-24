@@ -1,5 +1,7 @@
 #pragma once
-class Sprite
+#include "Component.h"
+
+class Sprite : public Component
 {
 public:
 	Sprite();
@@ -7,7 +9,7 @@ public:
 	
 	void update();
 	
-	GameObject* owner;
+
 
 };
 
