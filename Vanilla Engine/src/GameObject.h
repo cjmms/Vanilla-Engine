@@ -12,6 +12,7 @@ public:
 	void update();
 
 
+public:
 	Transform *transform;
 	Sprite *sprite;
 	Controller* controller;

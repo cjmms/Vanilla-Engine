@@ -11,8 +11,8 @@ void VanillaEngine::init(void)
 
     ResourceManager::getInstance().init();
 
-    entity.spawn();
-
+    //entity.spawn();
+    obj.sprite = new Sprite( "res/Texture/wood.jpg" );
 }
 
 
@@ -57,12 +57,13 @@ void VanillaEngine::update(void)
         UpdateFrameTime();
         InputMgr.getInputs(window);
 
-        if (InputMgr.keyIsPressed(GLFW_KEY_W)) entity.moveUp();
-        if (InputMgr.keyIsPressed(GLFW_KEY_A)) entity.moveLeft();
-        if (InputMgr.keyIsPressed(GLFW_KEY_S)) entity.moveDown();
-        if (InputMgr.keyIsPressed(GLFW_KEY_D)) entity.moveRight();
+       // if (InputMgr.keyIsPressed(GLFW_KEY_W)) entity.moveUp();
+        //if (InputMgr.keyIsPressed(GLFW_KEY_A)) entity.moveLeft();
+        //if (InputMgr.keyIsPressed(GLFW_KEY_S)) entity.moveDown();
+        //if (InputMgr.keyIsPressed(GLFW_KEY_D)) entity.moveRight();
  
-        entity.draw();
+        //entity.draw();
+        obj.sprite->draw(Vector2D(0.0));
 
         glfwSwapBuffers(window);
         limiteFPS(60);

@@ -3,7 +3,7 @@
 #include "InputManager.h"
 #include "ResourceManager.h"
 #include "Entity.h"
-
+#include "GameObject.h"
 
 
 
@@ -18,8 +18,8 @@ public:
 	InputManager InputMgr;
 	
 
-	Entity entity;
-	
+	//Entity entity;
+	GameObject obj;
 	
 	void init(void);
 	void close(void);

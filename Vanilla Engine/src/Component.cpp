@@ -5,3 +5,6 @@ Component::Component(ComponentType cType)
 	: type(cType), owner(nullptr)
 {
 }
+
+
+Component::~Component(){}
