@@ -1,10 +1,9 @@
 #pragma once
 
-#include "InputManager.h"
+
 #include "ResourceManager.h"
 #include "Entity.h"
 #include "GameObject.h"
-
 
 
 class VanillaEngine
@@ -15,7 +14,7 @@ private:
 public:	
 
 	GLFWwindow* window;
-	InputManager InputMgr;
+
 	
 
 	//Entity entity;

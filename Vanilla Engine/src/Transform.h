@@ -11,6 +11,11 @@ public:
 	
 	void update();
 
+	void moveUp();
+	void moveDown();
+	void moveLeft();
+	void moveRight();
+
 	Vector2D position;
 
 };

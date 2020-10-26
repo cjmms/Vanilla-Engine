@@ -15,7 +15,7 @@ public:
 public:
 	Transform *transform;
 	Sprite *sprite;
-	Controller* controller;
+	Controller *controller;
 
 };
 

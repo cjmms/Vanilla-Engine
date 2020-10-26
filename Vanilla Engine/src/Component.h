@@ -1,4 +1,6 @@
 #pragma once
+#include "InputManager.h"
+
 
 
 class GameObject;

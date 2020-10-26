@@ -7,12 +7,16 @@ void VanillaEngine::init(void)
 
     if (glewInit() != GLEW_OK) std::cout << "GLEW init error" << std::endl;
 
-    InputMgr.init();
-
+    //InputMgr.init();
+    InputManager::getInstance().init();
     ResourceManager::getInstance().init();
 
     //entity.spawn();
     obj.sprite = new Sprite( "res/Texture/wood.jpg" );
+    obj.controller = new Controller();
+    obj.controller->owner = &obj;
+    obj.transform = new Transform();
+    obj.transform->owner = &obj;
 }
 
 
@@ -44,7 +48,7 @@ void VanillaEngine::closeUI(void)
 void VanillaEngine::close(void)
 {
     ResourceManager::getInstance().close();
-    InputMgr.close();
+    InputManager::getInstance().close();
     closeUI();
 }
 
@@ -55,7 +59,7 @@ void VanillaEngine::update(void)
     while (!glfwWindowShouldClose(window))
     {
         UpdateFrameTime();
-        InputMgr.getInputs(window);
+        InputManager::getInstance().getInputs(window);
 
        // if (InputMgr.keyIsPressed(GLFW_KEY_W)) entity.moveUp();
         //if (InputMgr.keyIsPressed(GLFW_KEY_A)) entity.moveLeft();
@@ -63,10 +67,12 @@ void VanillaEngine::update(void)
         //if (InputMgr.keyIsPressed(GLFW_KEY_D)) entity.moveRight();
  
         //entity.draw();
-        obj.sprite->draw(Vector2D(0.0));
+        obj.controller->update();
+        obj.sprite->draw(obj.transform->position);
+
 
         glfwSwapBuffers(window);
-        limiteFPS(60);
+        //limiteFPS(60);
     }
 }
     
@@ -88,5 +94,5 @@ void VanillaEngine::UpdateFrameTime()
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
 
-    std::cout << "Frame time: " << deltaTime * 1000.0f << "  FPS: " << 1.0f / deltaTime << std::endl;
+    //std::cout << "Frame time: " << deltaTime * 1000.0f << "  FPS: " << 1.0f / deltaTime << std::endl;
 }

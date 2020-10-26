@@ -6,6 +6,8 @@
 #include <unordered_map>
 
 
+
+
 class InputManager
 {
 private:
@@ -24,8 +26,9 @@ public:
 
 	bool keyIsPressed(int key);
 
-	//static InputManager& getInstance();
+	static InputManager& getInstance();
 
-
+	InputManager(InputManager const&) = delete;
+	void operator=(InputManager const&) = delete;
 };
 

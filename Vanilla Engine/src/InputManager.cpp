@@ -26,6 +26,13 @@ bool InputManager::keyIsPressed(int key)
 
 
 
+InputManager& InputManager::getInstance()
+{
+    static InputManager InputMgr;
+    return InputMgr;
+}
+
+
 void InputManager::init()		// real instructor
 {
     keyboardEventMap[GLFW_KEY_W] = false;
