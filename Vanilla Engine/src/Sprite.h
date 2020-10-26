@@ -4,7 +4,7 @@
 #include <GL/glew.h>
 #include "ResourceManager.h"
 #include "Shader.h"
-//#include "GameObject.h"
+
 
 class Sprite : public Component
 {
@@ -14,6 +14,7 @@ public:
 	~Sprite( void );
 	
 	void update( void );
+	void Serialize(std::ifstream& InputStream);
 
 	void draw( const Vector2D& pos );
 

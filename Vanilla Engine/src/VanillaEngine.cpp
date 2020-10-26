@@ -10,14 +10,17 @@ void VanillaEngine::init(void)
     InputManager::getInstance().init();
     ResourceManager::getInstance().init();
     
+    obj = ResourceManager::getInstance().LoadGameObject("res/Data/Terminal.txt");
 
+    //obj.sprite = new Sprite( "res/Texture/wood.jpg" );
 
-    obj.sprite = new Sprite( "res/Texture/wood.jpg" );
+    //obj.AddComponent(CONTROLLER);
+    //obj.AddComponent(SPRITE);
+    //obj.sprite->Serialize("res/Texture/wood.jpg");
 
-    obj.AddComponent(CONTROLLER);
-    obj.AddComponent(TRANSFORM);
-    obj.AddComponent(UP_DOWN);
-
+    //obj.AddComponent(TRANSFORM);
+    //obj.AddComponent(UP_DOWN);
+    
 
 }
 
@@ -60,13 +63,13 @@ void VanillaEngine::update(void)
     // game loop
     while (!glfwWindowShouldClose(window))
     {
-        FPSController::getInstance().UpdateFrameTime();
+        //FPSController::getInstance().UpdateFrameTime();
         InputManager::getInstance().getInputs(window);
  
-        obj.update();
-        obj.sprite->draw(obj.transform->position);
+        obj->update();
+        obj->sprite->draw(obj->transform->position);
 
-        FPSController::getInstance().limiteFPS(60);
+        //FPSController::getInstance().limiteFPS(60);
 
         glfwSwapBuffers(window);
     }

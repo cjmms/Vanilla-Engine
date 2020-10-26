@@ -1,5 +1,6 @@
 #pragma once
 #include "InputManager.h"
+#include <iostream>
 
 
 
@@ -21,6 +22,8 @@ public:
 	virtual ~Component();
 	
 	virtual void update() = 0;
+
+	virtual void Serialize(std::ifstream& InputStream) = 0;
 
 	inline ComponentType getType() { return type; };
 	GameObject* owner;

@@ -10,6 +10,8 @@ public:
 	ObjectManager();
 	~ObjectManager();
 	void add(GameObject *object);
+	ObjectManager& getInstance();
+
 
 	std::vector<GameObject *> GameObjects;
 	

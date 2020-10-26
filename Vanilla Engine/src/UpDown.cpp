@@ -16,11 +16,23 @@ void UpDown::update()
 
 	if ( timer < 0.0f )
 	{
-		timer = 1000.0f;
+		timer = timerLimit;
 		movingUp = !movingUp;
 	}
 	
 	if (movingUp) owner->transform->moveUp();
 	else owner->transform->moveDown();
+
+}
+
+void UpDown::Serialize(std::ifstream& stream)
+{
+	int up;
+
+	stream >> up;
+	stream >> timerLimit;
+
+	movingUp = (bool)up;
+	
 
 }

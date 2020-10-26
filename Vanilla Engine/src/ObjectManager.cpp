@@ -17,3 +17,10 @@ void ObjectManager::add(GameObject *object)
 {
 	if (object != nullptr) GameObjects.push_back(object);
 }
+
+
+ObjectManager& ObjectManager::getInstance()
+{
+	static ObjectManager ResourceMgr;
+	return ResourceMgr;
+}

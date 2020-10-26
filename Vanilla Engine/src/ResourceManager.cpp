@@ -1,4 +1,5 @@
 #include "ResourceManager.h"
+#include "GameObject.h"
 
 
 void ResourceManager::createTexture(unsigned int &id, const char* filePath)
@@ -62,3 +63,35 @@ ResourceManager& ResourceManager::getInstance()
     static ResourceManager ResourceMgr;
     return ResourceMgr;
 }
+
+
+
+GameObject* ResourceManager::LoadGameObject(const char* fileName)
+{
+    GameObject* obj = nullptr;
+    std::string componentName;
+    std::ifstream inputStream(fileName);
+
+    if (inputStream.is_open())
+    {
+        std::cout << "file open" << std::endl;
+
+        obj = new GameObject();
+        while (std::getline(inputStream, componentName))
+        {
+            Component* component = nullptr;
+
+            if (componentName == "Transform")   component = obj->AddComponent(TRANSFORM);
+            if (componentName == "Sprite")      component = obj->AddComponent(SPRITE);
+            if (componentName == "Controller")  component = obj->AddComponent(CONTROLLER);
+            if (componentName == "UpDown")      component = obj->AddComponent(UP_DOWN);
+                
+            if (component != nullptr) component->Serialize(inputStream);
+        }
+       // ObjectManager::getInstance() ;
+        inputStream.close();
+    }
+
+    return obj;
+}
+

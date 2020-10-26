@@ -19,3 +19,8 @@ void Controller::update()
     if (InputManager::getInstance().keyIsPressed(GLFW_KEY_D)) owner->transform->moveRight();
 }
 
+
+void Controller::Serialize(std::ifstream& stream)
+{
+
+}

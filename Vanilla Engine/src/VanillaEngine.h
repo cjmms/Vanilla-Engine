@@ -12,7 +12,7 @@ public:
 
 	GLFWwindow* window;
 
-	GameObject obj;
+	GameObject* obj;
 	
 	void init(void);
 	void close(void);

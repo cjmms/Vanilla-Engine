@@ -6,8 +6,10 @@
 #include "../Dependencies/stb_image.h"
 #include <string>
 #include <unordered_map>
+//#include "GameObject.h"
+//#include "ObjectManager.h"
 
-
+class GameObject;
 
 struct Texture
 {
@@ -19,7 +21,7 @@ struct Texture
 class ResourceManager
 {
 private:
-	//std::unordered_map<Texture, int> TexIDMap;
+	
 	ResourceManager() {}
 
 public: 
@@ -36,6 +38,6 @@ public:
 	ResourceManager(ResourceManager const&) = delete;
 	void operator=(ResourceManager const&) = delete;
 
-	
+	GameObject* LoadGameObject(const char* fileName);
 };
 

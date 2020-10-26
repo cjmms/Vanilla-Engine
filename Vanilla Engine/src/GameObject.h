@@ -16,6 +16,8 @@ public:
 	Component* AddComponent(ComponentType type);
 	Component* GetComponent(ComponentType type);
 
+	virtual void Serialize(std::ifstream& InputStream) {};
+
 private:
 	std::vector<Component*> componentList;
 
