@@ -12,10 +12,6 @@ class VanillaEngine
 public:	
 
 	GLFWwindow* window;
-
-	GameObject* obj;
-	GameObject* player;
-	
 	
 	void init(void);
 	void close(void);

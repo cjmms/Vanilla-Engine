@@ -38,5 +38,6 @@ public:
 	void operator=(ResourceManager const&) = delete;
 
 	GameObject* LoadGameObject(const char* fileName);
+	void LoadLevel(const char * fileName);
 };
 

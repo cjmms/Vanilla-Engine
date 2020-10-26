@@ -10,9 +10,7 @@ void VanillaEngine::init(void)
     InputManager::getInstance().init();
     ResourceManager::getInstance().init();
 
-    GameObject * obj = ResourceManager::getInstance().LoadGameObject("res/Data/Terminal.txt");
-    obj = ResourceManager::getInstance().LoadGameObject("res/Data/player.txt");
-
+    ResourceManager::getInstance().LoadLevel("res/Data/Level.txt");
 }
 
 

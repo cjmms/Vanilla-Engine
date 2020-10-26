@@ -75,7 +75,7 @@ GameObject* ResourceManager::LoadGameObject(const char* fileName)
 
     if (inputStream.is_open())
     {
-        std::cout << "file open" << std::endl;
+        std::cout << "Load Game Object: " << fileName << std::endl;
 
         obj = new GameObject();
         while (std::getline(inputStream, componentName))
@@ -95,5 +95,27 @@ GameObject* ResourceManager::LoadGameObject(const char* fileName)
     }
 
     return obj;
+}
+
+
+void ResourceManager::LoadLevel(const char* fileName)
+{
+    std::string objName;
+    std::ifstream inputStream(fileName);
+
+    if (inputStream.is_open())
+    {
+        std::cout << "Load level: " << fileName << std::endl;
+
+        while (std::getline(inputStream, objName))
+        {
+            std::string address = "res/Data/" + objName + ".txt";
+            GameObject* obj = ResourceManager::getInstance().LoadGameObject(address.c_str());
+
+            if (obj != nullptr) obj->transform->Serialize(inputStream);
+        }
+
+        inputStream.close();
+    }
 }
 
