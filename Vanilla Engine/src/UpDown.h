@@ -1,10 +1,8 @@
 #pragma once
 #include "Component.h"
 #include "FPSController.h"
-//#include "GameObject.h"
-#include <string>
-#include <iostream>
-#include "Shader.h"
+
+
 
 
 class UpDown : public Component

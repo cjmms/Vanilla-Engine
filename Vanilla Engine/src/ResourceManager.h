@@ -6,8 +6,7 @@
 #include "../Dependencies/stb_image.h"
 #include <string>
 #include <unordered_map>
-//#include "GameObject.h"
-//#include "ObjectManager.h"
+
 
 class GameObject;
 

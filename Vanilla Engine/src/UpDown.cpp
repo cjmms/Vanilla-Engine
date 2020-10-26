@@ -2,8 +2,8 @@
 #include "GameObject.h"
 
 
-UpDown::UpDown() 
-	: Component(UP_DOWN), timer(1000.0f), movingUp(true)
+UpDown::UpDown()
+	: Component(UP_DOWN), timer(1000.0f), movingUp(true), timerLimit(1000)
 {}
 
 
@@ -16,9 +16,8 @@ void UpDown::update()
 
 	if ( timer < 0.0f )
 	{
-		timer = 1000;
+		timer = timerLimit;
 		movingUp = !movingUp;
-		std::cout << "inside" << std::endl;
 	}
 	
 	if (movingUp) owner->transform->moveUp();
@@ -31,9 +30,8 @@ void UpDown::Serialize(std::ifstream& stream)
 	int up;
 
 	stream >> up;
+	stream >> timerLimit;
 
-
+	timer = timerLimit;
 	movingUp = (bool)up;
-	
-
 }

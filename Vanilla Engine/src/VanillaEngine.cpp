@@ -12,7 +12,7 @@ void VanillaEngine::init(void)
     
     obj = ResourceManager::getInstance().LoadGameObject("res/Data/Terminal.txt");
 
-
+    player = ResourceManager::getInstance().LoadGameObject("res/Data/player.txt");
 
 }
 
@@ -58,10 +58,14 @@ void VanillaEngine::update(void)
         FPSController::getInstance().UpdateFrameTime();
         InputManager::getInstance().getInputs(window);
  
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
         obj->update();
         obj->sprite->draw(obj->transform->position);
 
-
+        player->update();
+        player->sprite->draw(player->transform->position);
 
         //FPSController::getInstance().limiteFPS(60);
 

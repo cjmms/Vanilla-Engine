@@ -1,7 +1,5 @@
 #pragma once
 #include "Component.h"
-#include <string>
-#include <GL/glew.h>
 #include "ResourceManager.h"
 #include "Shader.h"
 

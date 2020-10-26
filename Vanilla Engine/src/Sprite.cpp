@@ -29,9 +29,6 @@ void Sprite::draw( const Vector2D& pos )
     shader.setVec2("position", pos);
     shader.Bind();
 
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
