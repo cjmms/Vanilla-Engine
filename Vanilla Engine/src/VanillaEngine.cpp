@@ -13,12 +13,12 @@ void VanillaEngine::init(void)
 
 
     obj.sprite = new Sprite( "res/Texture/wood.jpg" );
-    obj.controller = new Controller();
-    obj.controller->owner = &obj;
-    obj.transform = new Transform();
-    obj.transform->owner = &obj;
-    obj.upDown = new UpDown();
-    obj.upDown->owner = &obj;
+
+    obj.AddComponent(CONTROLLER);
+    obj.AddComponent(TRANSFORM);
+    obj.AddComponent(UP_DOWN);
+
+
 }
 
 

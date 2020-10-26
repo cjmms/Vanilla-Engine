@@ -32,6 +32,9 @@ Sprite::Sprite(std::string address) : Component(SPRITE)
 }
 
 
+Sprite::Sprite() :Component(SPRITE)  {}
+
+
 Sprite::~Sprite()
 {}
 

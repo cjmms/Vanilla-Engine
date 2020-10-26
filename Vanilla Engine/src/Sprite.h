@@ -10,6 +10,7 @@ class Sprite : public Component
 {
 public:
 	Sprite(std::string address);
+	Sprite();
 	~Sprite( void );
 	
 	void update( void );
