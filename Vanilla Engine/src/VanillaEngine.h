@@ -14,6 +14,7 @@ public:
 
 	GameObject* obj;
 	
+	
 	void init(void);
 	void close(void);
 
