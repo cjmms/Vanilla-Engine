@@ -9,10 +9,9 @@ void VanillaEngine::init(void)
 
     InputManager::getInstance().init();
     ResourceManager::getInstance().init();
-    
-    obj = ResourceManager::getInstance().LoadGameObject("res/Data/Terminal.txt");
 
-    player = ResourceManager::getInstance().LoadGameObject("res/Data/player.txt");
+    GameObject * obj = ResourceManager::getInstance().LoadGameObject("res/Data/Terminal.txt");
+    obj = ResourceManager::getInstance().LoadGameObject("res/Data/player.txt");
 
 }
 
@@ -44,6 +43,7 @@ void VanillaEngine::closeUI(void)
 
 void VanillaEngine::close(void)
 {
+    ObjectManager::getInstance().close();
     ResourceManager::getInstance().close();
     InputManager::getInstance().close();
     closeUI();
@@ -61,13 +61,9 @@ void VanillaEngine::update(void)
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        obj->update();
-        obj->sprite->draw(obj->transform->position);
+        ObjectManager::getInstance().update();
+        ObjectManager::getInstance().render();
 
-        player->update();
-        player->sprite->draw(player->transform->position);
-
-        //FPSController::getInstance().limiteFPS(60);
 
         glfwSwapBuffers(window);
     }

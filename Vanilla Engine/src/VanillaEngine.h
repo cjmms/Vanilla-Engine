@@ -3,6 +3,7 @@
 #include "ResourceManager.h"
 #include "FPSController.h"
 #include "GameObject.h"
+#include "ObjectManager.h"
 
 
 class VanillaEngine

@@ -1,5 +1,6 @@
 #include "ResourceManager.h"
 #include "GameObject.h"
+#include "ObjectManager.h"
 
 
 void ResourceManager::createTexture(unsigned int &id, const char* filePath)
@@ -88,7 +89,8 @@ GameObject* ResourceManager::LoadGameObject(const char* fileName)
                 
             if (component != nullptr) component->Serialize(inputStream);
         }
-       // ObjectManager::getInstance() ;
+        ObjectManager::getInstance().add(obj);
+        
         inputStream.close();
     }
 

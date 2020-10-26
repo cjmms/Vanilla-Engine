@@ -8,7 +8,6 @@ ObjectManager::ObjectManager()
 
 ObjectManager::~ObjectManager()
 {
-	for (auto& object : GameObjects) delete(object);
 }
 
 
@@ -21,6 +20,24 @@ void ObjectManager::add(GameObject *object)
 
 ObjectManager& ObjectManager::getInstance()
 {
-	static ObjectManager ResourceMgr;
-	return ResourceMgr;
+	static ObjectManager objMgr;
+	return objMgr;
+}
+
+void ObjectManager::update( void )
+{
+	for (GameObject* obj : GameObjects) obj->update();
+}
+
+
+void ObjectManager::render( void ) const
+{
+	for (GameObject* obj : GameObjects) obj->sprite->draw(obj->transform->position);
+}
+
+
+void ObjectManager::close( void )
+{
+	for (GameObject* object : GameObjects) delete object;
+	GameObjects.clear();
 }

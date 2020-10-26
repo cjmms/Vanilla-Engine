@@ -7,16 +7,13 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
-	for (auto component : componentList)
-		delete component;
-
+	for (auto component : componentList) delete component;
 	componentList.clear();
 }
 
 void GameObject::update()
 {
-	for (auto component : componentList)
-		component->update();
+	for (auto component : componentList) component->update();
 }
 
 
