@@ -2,6 +2,7 @@
 #include "Transform.h"
 #include "Sprite.h"
 #include "Controller.h"
+#include "UpDown.h"
 
 class GameObject
 {
@@ -16,6 +17,7 @@ public:
 	Transform *transform;
 	Sprite *sprite;
 	Controller *controller;
+	UpDown* upDown;
 
 };
 

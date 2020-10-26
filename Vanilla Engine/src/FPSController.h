@@ -16,7 +16,7 @@ public:
 
 	void limiteFPS(int fps);
 
-	inline float getFrameTime() { return lastFrame; }
+	inline float getFrameTime() { return deltaTime * 1000.0f; }
 
 	static FPSController& getInstance();
 

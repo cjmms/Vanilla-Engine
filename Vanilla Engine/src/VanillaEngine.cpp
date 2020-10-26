@@ -17,6 +17,8 @@ void VanillaEngine::init(void)
     obj.controller->owner = &obj;
     obj.transform = new Transform();
     obj.transform->owner = &obj;
+    obj.upDown = new UpDown();
+    obj.upDown->owner = &obj;
 }
 
 

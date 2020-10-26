@@ -1,7 +1,7 @@
 #include "GameObject.h"
 
 GameObject::GameObject()
-	: transform(nullptr), sprite(nullptr), controller(nullptr)
+	: transform(nullptr), sprite(nullptr), controller(nullptr), upDown(nullptr)
 {
 }
 
@@ -16,5 +16,6 @@ void GameObject::update()
 	if (transform != nullptr) transform->update();
 	if (sprite != nullptr) sprite->update();
 	if (controller != nullptr) controller->update();
+	if (upDown != nullptr) upDown->update();
 
 }
