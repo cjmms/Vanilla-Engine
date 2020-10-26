@@ -1,23 +1,17 @@
 #pragma once
 
-
 #include "ResourceManager.h"
-#include "Entity.h"
+#include "FPSController.h"
 #include "GameObject.h"
 
 
 class VanillaEngine
 {
-private:
-	float lastFrame, deltaTime;
 
 public:	
 
 	GLFWwindow* window;
 
-	
-
-	//Entity entity;
 	GameObject obj;
 	
 	void init(void);
@@ -27,11 +21,6 @@ public:
 	void closeUI(void);
 
 	void update(void);
-
-	void UpdateFrameTime();
-
-	void limiteFPS(int fps);
-
 
 };
 

@@ -7,11 +7,11 @@ void VanillaEngine::init(void)
 
     if (glewInit() != GLEW_OK) std::cout << "GLEW init error" << std::endl;
 
-    //InputMgr.init();
     InputManager::getInstance().init();
     ResourceManager::getInstance().init();
+    
 
-    //entity.spawn();
+
     obj.sprite = new Sprite( "res/Texture/wood.jpg" );
     obj.controller = new Controller();
     obj.controller->owner = &obj;
@@ -58,41 +58,15 @@ void VanillaEngine::update(void)
     // game loop
     while (!glfwWindowShouldClose(window))
     {
-        UpdateFrameTime();
+        FPSController::getInstance().UpdateFrameTime();
         InputManager::getInstance().getInputs(window);
-
-       // if (InputMgr.keyIsPressed(GLFW_KEY_W)) entity.moveUp();
-        //if (InputMgr.keyIsPressed(GLFW_KEY_A)) entity.moveLeft();
-        //if (InputMgr.keyIsPressed(GLFW_KEY_S)) entity.moveDown();
-        //if (InputMgr.keyIsPressed(GLFW_KEY_D)) entity.moveRight();
  
-        //entity.draw();
-        obj.controller->update();
+        obj.update();
         obj.sprite->draw(obj.transform->position);
 
+        FPSController::getInstance().limiteFPS(60);
 
         glfwSwapBuffers(window);
-        //limiteFPS(60);
     }
 }
-    
-// object moves base on FPS, this is for testing FPS only
-void VanillaEngine::limiteFPS(int fps)
-{
-    float currentTime = glfwGetTime();
-    float waitTime = 1.0f / fps - (currentTime - lastFrame);
-
-    while (glfwGetTime() - currentTime < waitTime);
-}
-
-
-
-
-void VanillaEngine::UpdateFrameTime()
-{
-    float currentFrame = glfwGetTime();
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame;
-
-    //std::cout << "Frame time: " << deltaTime * 1000.0f << "  FPS: " << 1.0f / deltaTime << std::endl;
-}
+ 
