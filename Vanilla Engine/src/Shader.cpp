@@ -152,14 +152,38 @@ void Shader::setInt(const std::string& name, int value)
 }
 
 
-void Shader::setVec2(const char* name, Vector2D vec)
+void Shader::setVec2(const char* name, const Vector2D& vec)
 {
     unsigned int location = getUniformLocation(name);
     glProgramUniform2f(rendererID, location, vec.x, vec.y);
 }
 
 
-void Shader::setVec2(const std::string& name, Vector2D vec)
+void Shader::setVec2(const std::string& name, const Vector2D& vec)
 {
     setVec2(name.c_str(), vec);
 }
+
+
+void Shader::setVec3(const char* name, const Vector3D& vec)
+{
+    unsigned int location = getUniformLocation(name);
+    glProgramUniform3f(rendererID, location, vec.x, vec.y, vec.z);
+}
+
+
+void Shader::setVec3(const std::string& name, const Vector3D& vec)
+{
+    setVec3(name.c_str(), vec);
+}
+
+/*
+void setMat4(const char* name, Matrix4 matrix)
+{
+}
+
+
+void setMat4(const std::string& name, Matrix4 matrix)
+{
+
+}*/

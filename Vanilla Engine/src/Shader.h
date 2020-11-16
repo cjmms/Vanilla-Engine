@@ -6,6 +6,8 @@
 #include <fstream>
 #include <sstream>
 #include "Vector2D.h"
+#include "Vector3D.h"
+#include "Matrix4.h"
 
 
 
@@ -34,13 +36,13 @@ public:
 	int getUniformLocation(const char* name);
 	unsigned int getRendererID();
 
-	/*
-	void setMat4(const char* name, glm::mat4 matrix);
-	void setMat4(const std::string& name, glm::mat4 matrix);
-	void setVec3(const char* name, glm::vec3 vec);
-	void setVec3(const std::string& name, glm::vec3 vec);*/
-	void setVec2(const char* name, Vector2D vec);
-	void setVec2(const std::string& name, Vector2D vec);
+	
+	//void setMat4(const char* name, glm::mat4 matrix);
+	//void setMat4(const std::string& name, glm::mat4 matrix);
+	void setVec3(const char* name, const Vector3D& vec);
+	void setVec3(const std::string& name, const Vector3D& vec);
+	void setVec2(const char* name, const Vector2D& vec);
+	void setVec2(const std::string& name, const Vector2D& vec);
 	//void setFloat(const char* name, float value);
 	//void setFloat(const std::string& name, float value);
 	
