@@ -7,6 +7,8 @@ public:
 
 	float table[4][4];
 
+	// TODO: other mat4 functions
+
 
 };
 

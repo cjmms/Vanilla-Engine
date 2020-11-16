@@ -98,3 +98,27 @@ Matrix4 Perspective(const float rx, const float ry,
 }
 
 
+
+
+Matrix4 LookAt(const Vector3D& Eye, const Vector3D& Center, const Vector3D& Up)
+{
+    Vector3D V = ( Center - Eye ).normalize();
+    Vector3D A = ( V.cross(Up) ).normalize();
+    Vector3D B = A.cross(V);
+    
+    Matrix4 lookat(1.0f);
+    lookat.table[0][0] = A.x;
+    lookat.table[0][1] = A.y;
+    lookat.table[0][2] = A.z;
+    lookat.table[0][3] = -(A * Eye);
+
+    lookat.table[1][0] = B.x;
+    lookat.table[1][1] = B.y;
+    lookat.table[1][2] = B.z;
+    lookat.table[1][3] = -(B * Eye);
+
+    lookat.table[2][0] = -(V.x);
+    lookat.table[2][1] = -(V.y);
+    lookat.table[2][2] = -(V.z);
+    lookat.table[2][3] = V * Eye;   // look at -z axis
+}

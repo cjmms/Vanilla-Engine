@@ -73,11 +73,19 @@ float Vector3D::magnitude(void) const
 }
 
 
-const Vector3D Vector3D::normalize(void) const
+Vector3D Vector3D::normalize(void) const
 {
 	return Vector3D(this->x / magnitude(), this->y / magnitude(), this->z / magnitude());
 }
 
+
+Vector3D Vector3D::cross(const Vector3D& rhs) const
+{
+	return Vector3D( this->y * rhs.z - this->z * rhs.y,
+					 this->z * rhs.x - this->x * rhs.z,
+					 this->x * rhs.y - this->y * rhs.x );
+
+}
 
 
 

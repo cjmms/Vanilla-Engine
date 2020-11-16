@@ -18,7 +18,8 @@ Sprite::~Sprite()
 void Sprite::update()
 {}
 
-
+// TODO: move shader to a higher level
+// Each object bounds with one shader object for now
 void Sprite::draw( const Vector2D& pos )
 {
     Shader shader("src/demo.shader");
