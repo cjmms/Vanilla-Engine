@@ -24,6 +24,7 @@ public:
 
 	// operation
 	float magnitude(void) const;
+
 	const Vector3D normalize(void) const;
 
 
