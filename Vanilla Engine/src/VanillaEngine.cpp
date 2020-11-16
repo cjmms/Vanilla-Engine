@@ -59,8 +59,12 @@ void VanillaEngine::update(void)
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        Shader shader("src/demo.shader");
+
+        //Matrix4 perspective = perspective();
+            
         ObjectManager::getInstance().update();
-        ObjectManager::getInstance().render();
+        ObjectManager::getInstance().render(shader);
 
 
         glfwSwapBuffers(window);

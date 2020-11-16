@@ -31,23 +31,23 @@ public:
 	Shader() :rendererID(0) {};
 	Shader(const std::string& path);
 	~Shader();
-	void Bind();
+	void Bind() const;
 	void unBind();
-	int getUniformLocation(const char* name);
+	int getUniformLocation(const char* name) const;
 	unsigned int getRendererID();
 
 	
 	//void setMat4(const char* name, glm::mat4 matrix);
 	//void setMat4(const std::string& name, glm::mat4 matrix);
-	void setVec3(const char* name, const Vector3D& vec);
-	void setVec3(const std::string& name, const Vector3D& vec);
-	void setVec2(const char* name, const Vector2D& vec);
-	void setVec2(const std::string& name, const Vector2D& vec);
+	void setVec3(const char* name, const Vector3D& vec) const;
+	void setVec3(const std::string& name, const Vector3D& vec) const;
+	void setVec2(const char* name, const Vector2D& vec) const;
+	void setVec2(const std::string& name, const Vector2D& vec) const;
 	//void setFloat(const char* name, float value);
 	//void setFloat(const std::string& name, float value);
 	
-	void setInt(const char* name, int value);
-	void setInt(const std::string& name, int value);
+	void setInt(const char* name, int value) const;
+	void setInt(const std::string& name, int value) const;
 
 
 private:

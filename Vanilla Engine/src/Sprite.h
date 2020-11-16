@@ -14,7 +14,7 @@ public:
 	void update( void );
 	void Serialize(std::ifstream& InputStream);
 
-	void draw( const Vector2D& pos );
+	void draw( const Vector2D& pos, const Shader& shader);
 
 	unsigned int TexID;
 	

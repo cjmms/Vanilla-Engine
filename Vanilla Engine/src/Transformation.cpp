@@ -121,4 +121,6 @@ Matrix4 LookAt(const Vector3D& Eye, const Vector3D& Center, const Vector3D& Up)
     lookat.table[2][1] = -(V.y);
     lookat.table[2][2] = -(V.z);
     lookat.table[2][3] = V * Eye;   // look at -z axis
+
+    return lookat;
 }

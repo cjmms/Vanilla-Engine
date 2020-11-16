@@ -11,7 +11,7 @@ public:
 	void add(GameObject *object);
 	static ObjectManager& getInstance();
 	void update( void );
-	void render( void ) const;
+	void render( Shader& shader ) const;
 
 	void close( void );
 

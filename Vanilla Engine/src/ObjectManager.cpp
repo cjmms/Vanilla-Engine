@@ -30,9 +30,9 @@ void ObjectManager::update( void )
 }
 
 
-void ObjectManager::render( void ) const
+void ObjectManager::render(Shader& shader) const
 {
-	for (GameObject* obj : GameObjects) obj->sprite->draw(obj->transform->position);
+	for (GameObject* obj : GameObjects) obj->sprite->draw(obj->transform->position, shader);
 }
 
 

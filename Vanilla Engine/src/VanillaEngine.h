@@ -4,6 +4,7 @@
 #include "FPSController.h"
 #include "GameObject.h"
 #include "ObjectManager.h"
+#include "Transformation.h"
 
 
 class VanillaEngine

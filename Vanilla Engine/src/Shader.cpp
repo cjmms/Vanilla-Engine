@@ -116,7 +116,7 @@ void Shader::shaderErrorInfo(unsigned int shader, unsigned int type)
     }
 }
 
-void Shader::Bind()
+void Shader::Bind() const
 {
     glUseProgram(rendererID);
 }
@@ -127,7 +127,7 @@ void Shader::unBind()
 }
 
 
-int Shader::getUniformLocation(const char* name)
+int Shader::getUniformLocation(const char* name) const
 {
     return glGetUniformLocation(rendererID, name);
 }
@@ -139,40 +139,40 @@ unsigned int Shader::getRendererID()
 
 
 
-void Shader::setInt(const char* name, int value)
+void Shader::setInt(const char* name, int value) const
 {
     unsigned int location = getUniformLocation(name);
     glUniform1i(location, value);
 }
 
 
-void Shader::setInt(const std::string& name, int value)
+void Shader::setInt(const std::string& name, int value) const
 {
     setInt(name.c_str(), value);
 }
 
 
-void Shader::setVec2(const char* name, const Vector2D& vec)
+void Shader::setVec2(const char* name, const Vector2D& vec) const
 {
     unsigned int location = getUniformLocation(name);
     glProgramUniform2f(rendererID, location, vec.x, vec.y);
 }
 
 
-void Shader::setVec2(const std::string& name, const Vector2D& vec)
+void Shader::setVec2(const std::string& name, const Vector2D& vec) const
 {
     setVec2(name.c_str(), vec);
 }
 
 
-void Shader::setVec3(const char* name, const Vector3D& vec)
+void Shader::setVec3(const char* name, const Vector3D& vec) const
 {
     unsigned int location = getUniformLocation(name);
     glProgramUniform3f(rendererID, location, vec.x, vec.y, vec.z);
 }
 
 
-void Shader::setVec3(const std::string& name, const Vector3D& vec)
+void Shader::setVec3(const std::string& name, const Vector3D& vec) const
 {
     setVec3(name.c_str(), vec);
 }
