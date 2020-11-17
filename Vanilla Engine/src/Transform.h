@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-#include "Vector2D.h"
+#include "Vector3D.h"
 
 
 class Transform : public Component
@@ -19,7 +19,7 @@ public:
 
 	void Serialize(std::ifstream& stream);
 
-	Vector2D position;
+	Vector3D position;
 
 };
 

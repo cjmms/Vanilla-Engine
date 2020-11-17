@@ -177,13 +177,19 @@ void Shader::setVec3(const std::string& name, const Vector3D& vec) const
     setVec3(name.c_str(), vec);
 }
 
-/*
-void setMat4(const char* name, Matrix4 matrix)
+
+void Shader::setMat4(const char* name, Matrix4& matrix) const
 {
+    unsigned int location = getUniformLocation(name);
+   // std::cout << "matrix[0][0]: " << matrix.table[0][0] << std::endl;
+    //std::cout << "matrix[0][1]: " << matrix.table[0][1] << std::endl;
+    //std::cout << "matrix[0][2]: " << matrix.table[0][2] << std::endl;
+    //std::cout << "matrix[0][3]: " << matrix.table[0][3] << std::endl;
+    glUniformMatrix4fv(location, 1, GL_FALSE, Transformation::Pntr(matrix));
 }
 
 
-void setMat4(const std::string& name, Matrix4 matrix)
+void Shader::setMat4(const std::string& name, Matrix4& matrix) const
 {
-
-}*/
+    setMat4(name.c_str(), matrix);
+}

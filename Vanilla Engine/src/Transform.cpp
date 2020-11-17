@@ -5,6 +5,7 @@ Transform::Transform() : Component(TRANSFORM)
 {
 	position.x = 0;
 	position.y = 0;
+    position.z = 0;
 }
 
 
@@ -45,8 +46,10 @@ void Transform::Serialize(std::ifstream& InputStream)
 {
     InputStream >> position.x;
     InputStream >> position.y;
+    InputStream >> position.z;
 
     std::cout << "x: " << position.x << std::endl;
     std::cout << "y: " << position.y << std::endl;
+    std::cout << "z: " << position.z << std::endl;
 
 }

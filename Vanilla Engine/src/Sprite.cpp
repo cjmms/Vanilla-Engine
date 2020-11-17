@@ -20,13 +20,18 @@ void Sprite::update()
 
 
 
-void Sprite::draw( const Vector2D& pos, const Shader& shader)
+void Sprite::draw( const Vector3D& pos, const Shader& shader)
 {
     shader.setInt("diffuse", 0);
     glActiveTexture(GL_TEXTURE0);
    
-    shader.setVec2("position", pos);
+    Matrix4 Model(1.0f);
+    //Model = Transformation::Translate(pos.x, pos.y, pos.z);
+    shader.setMat4("Model", Model);
+    shader.setVec3("position", pos);
     shader.Bind();
+
+    std::cout << "pos: x: " << pos.x << "  pos: y " << pos.y  << " pos: z " << pos.z<< std::endl;
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

@@ -10,8 +10,10 @@
 
 #include "math.h"
 
-
-float* Pntr(Matrix4& M)
+// TODO: OpenGL does not allow passing 2D array as uniform
+// 2D array has to be flattened first
+// Stupid OpenGL, no wonder people use D3D and Vulkan
+float* Transformation::Pntr(Matrix4& M)
 {
     return &(M.table[0][0]);
 }
@@ -24,7 +26,7 @@ float* Pntr(Matrix4& M)
 // before using sin and cos.  HINT: radians = degrees*PI/180
 // i: rotate around which axis
 const float pi = 3.14159f;
-Matrix4 Rotate(const int i, const float theta)
+Matrix4 Transformation::Rotate(const int i, const float theta)
 {
     Matrix4 R(1.0f);  // identity matrix
 
@@ -60,7 +62,7 @@ Matrix4 Rotate(const int i, const float theta)
 }
 
 // Return a scale matrix
-Matrix4 Scale(const float x, const float y, const float z)
+Matrix4 Transformation::Scale(const float x, const float y, const float z)
 {
     Matrix4 S(1.0f);
     S.table[0][0] = x;
@@ -72,7 +74,7 @@ Matrix4 Scale(const float x, const float y, const float z)
 }
 
 // Return a translation matrix
-Matrix4 Translate(const float x, const float y, const float z)
+Matrix4 Transformation::Translate(const float x, const float y, const float z)
 {
     Matrix4 T(1.0f);
     T.table[3][0] = x;
@@ -83,7 +85,7 @@ Matrix4 Translate(const float x, const float y, const float z)
 }
 
 // Returns a perspective projection matrix
-Matrix4 Perspective(const float rx, const float ry,
+Matrix4 Transformation::Perspective(const float rx, const float ry,
     const float front, const float back)
 {
     Matrix4 P(0.0f);
@@ -100,7 +102,7 @@ Matrix4 Perspective(const float rx, const float ry,
 
 
 
-Matrix4 LookAt(const Vector3D& Eye, const Vector3D& Center, const Vector3D& Up)
+Matrix4 Transformation::LookAt(const Vector3D& Eye, const Vector3D& Center, const Vector3D& Up)
 {
     Vector3D V = ( Center - Eye ).normalize();
     Vector3D A = ( V.cross(Up) ).normalize();

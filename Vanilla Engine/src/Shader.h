@@ -8,6 +8,7 @@
 #include "Vector2D.h"
 #include "Vector3D.h"
 #include "Matrix4.h"
+#include "Transformation.h"
 
 
 
@@ -37,8 +38,8 @@ public:
 	unsigned int getRendererID();
 
 	
-	//void setMat4(const char* name, glm::mat4 matrix);
-	//void setMat4(const std::string& name, glm::mat4 matrix);
+	void setMat4(const char* name, Matrix4& matrix) const;
+	void setMat4(const std::string& name, Matrix4& matrix) const;
 	void setVec3(const char* name, const Vector3D& vec) const;
 	void setVec3(const std::string& name, const Vector3D& vec) const;
 	void setVec2(const char* name, const Vector2D& vec) const;

@@ -61,8 +61,17 @@ void VanillaEngine::update(void)
 
         Shader shader("src/demo.shader");
 
-        //Matrix4 perspective = perspective();
-            
+        Matrix4 perspective = Transformation::Perspective( 0.4,
+                                                            0.4 * 1200.0 / 1000.0, 
+                                                            0.1f, 10.0f); 
+
+        Matrix4 lookat = Transformation::LookAt( Vector3D(0.0, 0.0, 5.0f),  // Eye
+                                                 Vector3D(0.0, 0.0, 0.0),   // lookat
+                                                 Vector3D(0.0, 1.0, 0.0) ); // up
+        //Matrix4 test(1.0f);
+        //shader.setMat4("Projection", test);
+        //shader.setMat4("View", lookat);
+
         ObjectManager::getInstance().update();
         ObjectManager::getInstance().render(shader);
 
