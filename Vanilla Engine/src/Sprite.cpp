@@ -26,15 +26,10 @@ void Sprite::draw( const glm::vec3& pos, const Shader& shader)
     glActiveTexture(GL_TEXTURE0);
    
     shader.Bind();
-    glm::mat4 Model(1.0f);
-    Model = glm::translate(Model, pos);
-    //glm::translate(Model, glm::vec3(3.3, 0.0, 0.0));
-    //Model = Transformation::Translate(pos.x, pos.y, pos.z);
+    glm::mat4 Model = glm::translate(glm::mat4(1.0f), pos);
     shader.setMat4("Model", Model);
-    shader.setVec3("position", pos);
-    //shader.Bind();
 
-    std::cout << "pos: x: " << pos.x << "  pos: y " << pos.y  << " pos: z " << pos.z<< std::endl;
+    //std::cout << "pos: x: " << pos.x << "  pos: y " << pos.y  << " pos: z " << pos.z<< std::endl;
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

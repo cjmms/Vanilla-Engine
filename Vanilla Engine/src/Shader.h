@@ -5,10 +5,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "Vector2D.h"
-#include "Vector3D.h"
-#include "Matrix4.h"
-#include "Transformation.h"
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
 #include "ext.hpp"
@@ -45,8 +41,8 @@ public:
 	void setMat4(const std::string& name, glm::mat4& matrix) const;
 	void setVec3(const char* name, const glm::vec3& vec) const;
 	void setVec3(const std::string& name, const glm::vec3& vec) const;
-	void setVec2(const char* name, const Vector2D& vec) const;
-	void setVec2(const std::string& name, const Vector2D& vec) const;
+	void setVec2(const char* name, const glm::vec2& vec) const;
+	void setVec2(const std::string& name, const glm::vec2& vec) const;
 	//void setFloat(const char* name, float value);
 	//void setFloat(const std::string& name, float value);
 	

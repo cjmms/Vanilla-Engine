@@ -60,17 +60,13 @@ void VanillaEngine::update(void)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         Shader shader("src/demo.shader");
-        /*
-        Matrix4 perspective = Transformation::Perspective( 0.4,
-                                                            0.4 * 1200.0 / 1000.0, 
-                                                            0.1f, 10.0f); 
+        shader.Bind();
 
-        Matrix4 lookat = Transformation::LookAt( Vector3D(0.0, 0.0, 5.0f),  // Eye
-                                                 Vector3D(0.0, 0.0, 0.0),   // lookat
-                                                 Vector3D(0.0, 1.0, 0.0) ); // up*/
-        //Matrix4 test(1.0f);
-        //shader.setMat4("Projection", test);
-        //shader.setMat4("View", lookat);
+        glm::mat4 pers = glm::perspective(glm::radians(45.0f), 1200 / 1000.0f, 0.1f, 100.0f);
+        glm::mat4 lookat = glm::lookAt(glm::vec3(0.0, 0.0, 2.0), glm::vec3(0.0), glm::vec3(0.0, 1.0, 0.0));
+
+        shader.setMat4("Projection", pers);
+        shader.setMat4("View", lookat);
 
         ObjectManager::getInstance().update();
         ObjectManager::getInstance().render(shader);

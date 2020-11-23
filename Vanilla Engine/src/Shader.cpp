@@ -151,14 +151,14 @@ void Shader::setInt(const std::string& name, int value) const
 }
 
 
-void Shader::setVec2(const char* name, const Vector2D& vec) const
+void Shader::setVec2(const char* name, const glm::vec2& vec) const
 {
     unsigned int location = getUniformLocation(name);
     glProgramUniform2f(rendererID, location, vec.x, vec.y);
 }
 
 
-void Shader::setVec2(const std::string& name, const Vector2D& vec) const
+void Shader::setVec2(const std::string& name, const glm::vec2& vec) const
 {
     setVec2(name.c_str(), vec);
 }
@@ -180,11 +180,6 @@ void Shader::setVec3(const std::string& name, const glm::vec3& vec) const
 void Shader::setMat4(const char* name, glm::mat4& matrix) const
 {
     unsigned int location = getUniformLocation(name);
-   // std::cout << "matrix[0][0]: " << matrix.table[0][0] << std::endl;
-    //std::cout << "matrix[0][1]: " << matrix.table[0][1] << std::endl;
-    //std::cout << "matrix[0][2]: " << matrix.table[0][2] << std::endl;
-    //std::cout << "matrix[0][3]: " << matrix.table[0][3] << std::endl;
-    //glUniformMatrix4fv(location, 1, GL_FALSE, Transformation::Pntr(matrix));
     glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
