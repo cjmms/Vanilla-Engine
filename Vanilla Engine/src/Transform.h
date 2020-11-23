@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Vector3D.h"
+#include "Shader.h"
 
 
 class Transform : public Component
@@ -19,7 +20,7 @@ public:
 
 	void Serialize(std::ifstream& stream);
 
-	Vector3D position;
+	glm::vec3 position;
 
 };
 

@@ -9,6 +9,9 @@
 #include "Vector3D.h"
 #include "Matrix4.h"
 #include "Transformation.h"
+#include "glm.hpp"
+#include "gtc/matrix_transform.hpp"
+#include "ext.hpp"
 
 
 
@@ -38,10 +41,10 @@ public:
 	unsigned int getRendererID();
 
 	
-	void setMat4(const char* name, Matrix4& matrix) const;
-	void setMat4(const std::string& name, Matrix4& matrix) const;
-	void setVec3(const char* name, const Vector3D& vec) const;
-	void setVec3(const std::string& name, const Vector3D& vec) const;
+	void setMat4(const char* name, glm::mat4& matrix) const;
+	void setMat4(const std::string& name, glm::mat4& matrix) const;
+	void setVec3(const char* name, const glm::vec3& vec) const;
+	void setVec3(const std::string& name, const glm::vec3& vec) const;
 	void setVec2(const char* name, const Vector2D& vec) const;
 	void setVec2(const std::string& name, const Vector2D& vec) const;
 	//void setFloat(const char* name, float value);

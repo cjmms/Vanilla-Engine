@@ -13,10 +13,11 @@ uniform vec3 position;
 
 void main()
 {
-	vec4 p = vec4(aPos.x + position.x, aPos.y + position.y, 0.0F, 1.0);
+	gl_Position = Model * vec4(aPos.x, aPos.y , 0.0F, 1.0);
+	//gl_Position = Model * vec4(aPos.x + position.x, aPos.y + position.y, 0.0F, 1.0);
 	//gl_Position =  Projection * View * p;
 	//gl_Position = Projection * p;
-	gl_Position = Model * p;
+	//gl_Position =  vec4(aPos, 0.0, 1.0);
 	TexCoord = aTexCoord;
 }
 

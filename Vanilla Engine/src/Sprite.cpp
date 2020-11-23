@@ -20,16 +20,19 @@ void Sprite::update()
 
 
 
-void Sprite::draw( const Vector3D& pos, const Shader& shader)
+void Sprite::draw( const glm::vec3& pos, const Shader& shader)
 {
     shader.setInt("diffuse", 0);
     glActiveTexture(GL_TEXTURE0);
    
-    Matrix4 Model(1.0f);
+    shader.Bind();
+    glm::mat4 Model(1.0f);
+    Model = glm::translate(Model, pos);
+    //glm::translate(Model, glm::vec3(3.3, 0.0, 0.0));
     //Model = Transformation::Translate(pos.x, pos.y, pos.z);
     shader.setMat4("Model", Model);
     shader.setVec3("position", pos);
-    shader.Bind();
+    //shader.Bind();
 
     std::cout << "pos: x: " << pos.x << "  pos: y " << pos.y  << " pos: z " << pos.z<< std::endl;
 

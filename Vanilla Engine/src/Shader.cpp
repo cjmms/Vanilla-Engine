@@ -1,7 +1,6 @@
 #include "Shader.h"
 
 
-
 Shader::Shader(const std::string& path)
     :rendererID(0), shaderFilePath(path)
 {
@@ -165,31 +164,32 @@ void Shader::setVec2(const std::string& name, const Vector2D& vec) const
 }
 
 
-void Shader::setVec3(const char* name, const Vector3D& vec) const
+void Shader::setVec3(const char* name, const glm::vec3& vec) const
 {
     unsigned int location = getUniformLocation(name);
     glProgramUniform3f(rendererID, location, vec.x, vec.y, vec.z);
 }
 
 
-void Shader::setVec3(const std::string& name, const Vector3D& vec) const
+void Shader::setVec3(const std::string& name, const glm::vec3& vec) const
 {
     setVec3(name.c_str(), vec);
 }
 
 
-void Shader::setMat4(const char* name, Matrix4& matrix) const
+void Shader::setMat4(const char* name, glm::mat4& matrix) const
 {
     unsigned int location = getUniformLocation(name);
    // std::cout << "matrix[0][0]: " << matrix.table[0][0] << std::endl;
     //std::cout << "matrix[0][1]: " << matrix.table[0][1] << std::endl;
     //std::cout << "matrix[0][2]: " << matrix.table[0][2] << std::endl;
     //std::cout << "matrix[0][3]: " << matrix.table[0][3] << std::endl;
-    glUniformMatrix4fv(location, 1, GL_FALSE, Transformation::Pntr(matrix));
+    //glUniformMatrix4fv(location, 1, GL_FALSE, Transformation::Pntr(matrix));
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 
-void Shader::setMat4(const std::string& name, Matrix4& matrix) const
+void Shader::setMat4(const std::string& name, glm::mat4& matrix) const
 {
     setMat4(name.c_str(), matrix);
 }
