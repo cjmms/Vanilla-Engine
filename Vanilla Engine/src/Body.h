@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "Transform.h"
 
 class GameObject;
 
@@ -9,9 +10,11 @@ public:
 	Body();
 	~Body();
 
-	void Update(void);
+	void update(void);
 	virtual void Serialize(std::ifstream& InputStream);
-	void Integrate(float Gravity, float DeltaTime);
+
+	// seperate from update()
+	void Integrate(float Gravity, float DeltaTime, glm::vec3& pos);
 
 public:
 	glm::vec2 mPos;

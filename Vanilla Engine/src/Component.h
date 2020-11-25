@@ -1,5 +1,6 @@
 #pragma once
 #include "InputManager.h"
+//#include "GameObject.h"
 #include <fstream>
 #include "ext.hpp"
 
@@ -12,7 +13,8 @@ enum ComponentType
 	TRANSFORM,
 	SPRITE,
 	CONTROLLER,
-	UP_DOWN
+	UP_DOWN,
+	BODY
 };
 
 
