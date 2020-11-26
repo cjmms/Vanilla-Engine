@@ -1,0 +1,24 @@
+#pragma once
+#include "Component.h"
+
+
+class Transform : public Component
+{
+
+public:
+	Transform();
+	~Transform();
+	
+	virtual void update(void) override;
+
+	void moveUp(void);
+	void moveDown(void);
+	void moveLeft(void);
+	void moveRight(void);
+
+	virtual void Serialize(std::ifstream& stream) override;
+
+	glm::vec3 position;
+
+};
+

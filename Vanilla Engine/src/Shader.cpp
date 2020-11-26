@@ -131,7 +131,7 @@ int Shader::getUniformLocation(const char* name) const
     return glGetUniformLocation(rendererID, name);
 }
 
-unsigned int Shader::getRendererID()
+unsigned int Shader::getRendererID(void) const
 {
     return rendererID;
 }

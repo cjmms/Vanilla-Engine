@@ -1,21 +1,15 @@
 #include "Transform.h"
+#include <fstream>
 
-
-Transform::Transform() : Component(TRANSFORM)
-{
-	position.x = 0;
-	position.y = 0;
-    position.z = 0;
-}
-
+Transform::Transform() : Component(TRANSFORM), position(glm::vec3(0.0f))
+{}
 
 
 Transform::~Transform()
 {}
 
 
-
-void Transform::update()
+void Transform::update(void)
 {}
 
 

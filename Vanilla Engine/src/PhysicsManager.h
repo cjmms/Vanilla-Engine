@@ -20,7 +20,7 @@ public:
 	PhysicsManager(PhysicsManager const&) = delete;
 	void operator=(PhysicsManager const&) = delete;
 
-	static PhysicsManager& getInstance();
+	static PhysicsManager& getInstance(void);
 
 };
 

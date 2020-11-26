@@ -1,5 +1,6 @@
 #include "Controller.h"
-#include "GameObject.h"
+#include "../GameObject.h"
+
 
 
 Controller::Controller() : Component(CONTROLLER)
@@ -11,7 +12,7 @@ Controller::~Controller()
 {}
 
 
-void Controller::update()
+void Controller::update(void)
 {
     if (InputManager::getInstance().keyIsPressed(GLFW_KEY_W)) owner->transform->moveUp();
     if (InputManager::getInstance().keyIsPressed(GLFW_KEY_A)) owner->transform->moveLeft();

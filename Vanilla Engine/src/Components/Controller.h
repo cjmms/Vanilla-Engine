@@ -9,9 +9,9 @@ public:
 	Controller();
 	~Controller();
 
-	void Serialize(std::ifstream& stream);
+	virtual void Serialize(std::ifstream& stream) override;
 	
-	void update();
+	virtual void update(void) override;
 
 };
 

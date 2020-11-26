@@ -1,8 +1,6 @@
 #pragma once
-#include "InputManager.h"
-//#include "GameObject.h"
-#include <fstream>
-#include "ext.hpp"
+#include "../InputManager.h"
+#include "ext.hpp"		// GLM library
 
 
 

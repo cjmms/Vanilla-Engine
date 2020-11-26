@@ -18,7 +18,7 @@ void ObjectManager::add(GameObject *object)
 }
 
 
-ObjectManager& ObjectManager::getInstance()
+ObjectManager& ObjectManager::getInstance(void)
 {
 	static ObjectManager objMgr;
 	return objMgr;
@@ -32,7 +32,7 @@ void ObjectManager::update( void )
 
 void ObjectManager::render(Shader& shader) const
 {
-	for (GameObject* obj : GameObjects) obj->sprite->draw(obj->transform->position, shader);
+	for (GameObject* obj : GameObjects) obj->sprite->draw(shader);
 }
 
 

@@ -59,7 +59,7 @@ void ResourceManager::close(void)
 {}
 
 
-ResourceManager& ResourceManager::getInstance()
+ResourceManager& ResourceManager::getInstance(void)
 {
     static ResourceManager ResourceMgr;
     return ResourceMgr;

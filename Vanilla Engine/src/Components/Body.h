@@ -1,6 +1,5 @@
 #pragma once
 #include "Component.h"
-#include "Transform.h"
 
 class GameObject;
 
@@ -10,7 +9,7 @@ public:
 	Body();
 	~Body();
 
-	void update(void);
+	virtual void update(void) override;
 	virtual void Serialize(std::ifstream& InputStream);
 
 	// seperate from update()

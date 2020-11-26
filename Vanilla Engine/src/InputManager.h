@@ -18,15 +18,15 @@ public:
 	~InputManager();	// do nothing
 	InputManager();
 	
-	void init();		// real instructor
+	void init(void);		// real instructor
 
-	void close();		// real destructor
+	void close(void);		// real destructor
 
 	void getInputs(GLFWwindow* window);
 
 	bool keyIsPressed(int key);
 
-	static InputManager& getInstance();
+	static InputManager& getInstance(void);
 
 	InputManager(InputManager const&) = delete;
 	void operator=(InputManager const&) = delete;

@@ -1,8 +1,5 @@
 #pragma once
 #include "Component.h"
-#include "FPSController.h"
-
-
 
 
 class UpDown : public Component
@@ -16,8 +13,8 @@ public:
 	UpDown();
 	~UpDown();
 
-	void update();
-	void Serialize(std::ifstream& stream);
+	virtual void update(void) override;
+	virtual void Serialize(std::ifstream& stream) override;
 
 };
 

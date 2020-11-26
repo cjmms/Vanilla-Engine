@@ -1,33 +1,28 @@
 #include "Sprite.h"
+#include "../ResourceManager.h"
+#include "../GameObject.h"
 
 
-
-Sprite::Sprite(std::string address) : Component(SPRITE)
-{
-    
-}
-
-
-Sprite::Sprite() :Component(SPRITE)  {}
+Sprite::Sprite() :Component(SPRITE), TexID(-1) {}
 
 
 Sprite::~Sprite()
 {}
 
 
-void Sprite::update()
+void Sprite::update(void)
 {}
 
 
 
-void Sprite::draw( const glm::vec3& pos, const Shader& shader)
+void Sprite::draw(const Shader& shader)
 {
-    //Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
+    Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
     shader.setInt("diffuse", 0);
     glActiveTexture(GL_TEXTURE0);
    
     shader.Bind();
-    glm::mat4 Model = glm::translate(glm::mat4(1.0f), pos);
+    glm::mat4 Model = glm::translate(glm::mat4(1.0f), transform->position);
     shader.setMat4("Model", Model);
 
     //std::cout << "pos: x: " << pos.x << "  pos: y " << pos.y  << " pos: z " << pos.z<< std::endl;

@@ -12,7 +12,7 @@ GameObject::~GameObject()
 	componentList.clear();
 }
 
-void GameObject::update()
+void GameObject::update(void)
 {
 	for (auto component : componentList) component->update();
 }

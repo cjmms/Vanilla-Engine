@@ -31,10 +31,10 @@ public:
 	Shader() :rendererID(0) {};
 	Shader(const std::string& path);
 	~Shader();
-	void Bind() const;
-	void unBind();
+	void Bind(void) const;
+	void unBind(void);
 	int getUniformLocation(const char* name) const;
-	unsigned int getRendererID();
+	unsigned int getRendererID(void) const;
 
 	
 	void setMat4(const char* name, glm::mat4& matrix) const;

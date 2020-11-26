@@ -25,7 +25,7 @@ private:
 
 public: 
 
-	static ResourceManager& getInstance();
+	static ResourceManager& getInstance(void);
 
 	void createTexture(unsigned int &id, const char* filePath);
 	

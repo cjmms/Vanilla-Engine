@@ -1,5 +1,6 @@
 #include "UpDown.h"
-#include "GameObject.h"
+#include "../GameObject.h"
+#include "../FPSController.h"
 
 
 UpDown::UpDown()
@@ -10,7 +11,7 @@ UpDown::UpDown()
 UpDown::~UpDown() {}
 
 
-void UpDown::update()
+void UpDown::update(void)
 {
 	timer -= FPSController::getInstance().getFrameTime();
 
@@ -22,7 +23,6 @@ void UpDown::update()
 	
 	if (movingUp) owner->transform->moveUp();
 	else owner->transform->moveDown();
-
 }
 
 void UpDown::Serialize(std::ifstream& stream)

@@ -4,7 +4,7 @@
 // object moves base on FPS, this is for testing FPS only
 void FPSController::limiteFPS(int fps)
 {
-    float currentTime = glfwGetTime();
+    float currentTime = (float)glfwGetTime();
     float waitTime = 1.0f / fps - (currentTime - lastFrame);
 
     while (glfwGetTime() - currentTime < waitTime);
@@ -13,9 +13,9 @@ void FPSController::limiteFPS(int fps)
 
 
 
-void FPSController::UpdateFrameTime()
+void FPSController::UpdateFrameTime(void)
 {
-    float currentFrame = glfwGetTime();
+    float currentFrame = (float)glfwGetTime();
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
 
@@ -23,14 +23,14 @@ void FPSController::UpdateFrameTime()
 }
 
 
-FPSController& FPSController::getInstance()
+FPSController& FPSController::getInstance(void)
 {
     static FPSController controller;
     return controller;
 }
 
 
-FPSController::FPSController()
+FPSController::FPSController() : lastFrame(0.0f), deltaTime(0.0f)
 {}
 
 FPSController::~FPSController()

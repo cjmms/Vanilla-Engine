@@ -26,14 +26,14 @@ bool InputManager::keyIsPressed(int key)
 
 
 
-InputManager& InputManager::getInstance()
+InputManager& InputManager::getInstance(void)
 {
     static InputManager InputMgr;
     return InputMgr;
 }
 
 
-void InputManager::init()		// real instructor
+void InputManager::init(void)		// real instructor
 {
     keyboardEventMap[GLFW_KEY_W] = false;
     keyboardEventMap[GLFW_KEY_S] = false;
@@ -42,7 +42,7 @@ void InputManager::init()		// real instructor
 
 }
 
-void InputManager::close()
+void InputManager::close(void)
 {}
 
 

@@ -39,7 +39,7 @@ void PhysicsManager::close(void)
 {}
 
 
-PhysicsManager& PhysicsManager::getInstance()
+PhysicsManager& PhysicsManager::getInstance(void)
 {
 	static PhysicsManager pMgr;
 	return pMgr;

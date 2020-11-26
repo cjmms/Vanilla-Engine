@@ -1,4 +1,5 @@
 #include "Body.h"
+#include "../GameObject.h"
 
 Body::Body()
 	: mPos(glm::vec2(0.0f)), mPrevPos(glm::vec2(0.0f)), velocity(glm::vec2(0.0f)),
@@ -25,8 +26,8 @@ void Body::Serialize(std::ifstream& InputStream)
 
 void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 {
-	//owner->GetComponent();
-	mPos = glm::vec2(pos.x, pos.y);
+	Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
+	mPos = transform->position;
 
 	mPrevPos = mPos;
 
@@ -42,5 +43,5 @@ void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 	// integrate position
 	mPos = velocity * DeltaTime + mPos;
 
-	pos = glm::vec3(mPos.x, mPos.y, 0.0f);
+	transform->position = glm::vec3(mPos.x, mPos.y, 0.0f);
 }

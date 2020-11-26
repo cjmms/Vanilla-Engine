@@ -1,9 +1,9 @@
 #pragma once
-#include "Transform.h"
-#include "Sprite.h"
-#include "Controller.h"
-#include "UpDown.h"
-#include "Body.h"
+#include "./Components/Transform.h"
+#include "./Components/Sprite.h"
+#include "./Components/Controller.h"
+#include "./Components/UpDown.h"
+#include "./Components/Body.h"
 #include <vector>
 
 
@@ -13,7 +13,7 @@ class GameObject
 public:
 	GameObject();
 	~GameObject();
-	void update();
+	void update(void);
 
 	Component* AddComponent(ComponentType type);
 	Component* GetComponent(ComponentType type);

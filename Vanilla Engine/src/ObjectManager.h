@@ -10,7 +10,7 @@ public:
 	ObjectManager();
 	~ObjectManager();
 	void add(GameObject *object);
-	static ObjectManager& getInstance();
+	static ObjectManager& getInstance(void);
 	void update( void );
 	void render( Shader& shader ) const;
 
