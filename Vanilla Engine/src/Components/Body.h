@@ -10,6 +10,8 @@ public:
 	~Body();
 
 	virtual void update(void) override;
+
+	// serialize mass and inMass
 	virtual void Serialize(std::ifstream& InputStream);
 
 	// seperate from update()
