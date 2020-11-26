@@ -22,6 +22,7 @@ void Sprite::update()
 
 void Sprite::draw( const glm::vec3& pos, const Shader& shader)
 {
+    //Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
     shader.setInt("diffuse", 0);
     glActiveTexture(GL_TEXTURE0);
    

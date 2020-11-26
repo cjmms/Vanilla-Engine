@@ -3,7 +3,9 @@
 #include "Sprite.h"
 #include "Controller.h"
 #include "UpDown.h"
+#include "Body.h"
 #include <vector>
+
 
 class GameObject
 {
@@ -26,6 +28,7 @@ public:
 	Sprite *sprite;
 	Controller *controller;
 	UpDown* upDown;
+	Body* body;
 
 };
 

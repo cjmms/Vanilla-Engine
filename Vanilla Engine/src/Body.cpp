@@ -25,6 +25,7 @@ void Body::Serialize(std::ifstream& InputStream)
 
 void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 {
+	//owner->GetComponent();
 	mPos = glm::vec2(pos.x, pos.y);
 
 	mPrevPos = mPos;

@@ -1,5 +1,6 @@
 #include "GameObject.h"
 
+
 GameObject::GameObject()
 	: transform(nullptr), sprite(nullptr), controller(nullptr), upDown(nullptr)
 {
@@ -40,6 +41,9 @@ Component* GameObject::AddComponent(ComponentType type)
 		component = new UpDown();
 		this->upDown = static_cast<UpDown*>(component);
 		break;
+	case BODY:
+		component = new Body();
+		this->body = static_cast<Body*>(component);
 	default:
 		return nullptr;
 	}

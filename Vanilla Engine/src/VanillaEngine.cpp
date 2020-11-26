@@ -41,6 +41,7 @@ void VanillaEngine::closeUI(void)
 
 void VanillaEngine::close(void)
 {
+    PhysicsManager::getInstance().close();
     ObjectManager::getInstance().close();
     ResourceManager::getInstance().close();
     InputManager::getInstance().close();
@@ -69,6 +70,8 @@ void VanillaEngine::update(void)
 
         shader.setMat4("Projection", pers);
         shader.setMat4("View", lookat);
+
+        PhysicsManager::getInstance().update();
 
         ObjectManager::getInstance().update();
         ObjectManager::getInstance().render(shader);
