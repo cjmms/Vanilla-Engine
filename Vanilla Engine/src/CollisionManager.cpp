@@ -96,11 +96,31 @@ void CollisionManager::AddContact(Shape* shape1, Shape* shape2)
 
 bool CollisionManager::CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
 {
+	ShapeAABB* aabb1 = static_cast<ShapeAABB*>(shape1);
+	ShapeAABB* aabb2 = static_cast<ShapeAABB*>(shape2);
+
+	float left1 = pos1.x + aabb1->left;
+	float right1 = pos1.x + aabb1->right;
+	float top1 = pos1.y + aabb1->top;
+	float bottom1 = pos1.y + aabb1->bottom;
+
+	float left2 = pos2.x + aabb2->left;
+	float right2 = pos2.x + aabb2->right;
+	float top2 = pos2.y + aabb2->top;
+	float bottom2 = pos2.y + aabb2->bottom;
+
+	if (left1 > right2 || left2 > right1 || top1 > bottom2 || top2 > bottom1) return false;
+
+	// Add new contact
+	AddContact(shape1, shape1);
+
+	return true;
 }
 
 
 bool CollisionManager::CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
 {
+	return false;
 }
 
 
