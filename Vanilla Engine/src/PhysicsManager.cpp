@@ -23,7 +23,7 @@ void PhysicsManager::update(void)
 	{
 		Body* body = static_cast<Body*>(pGameObj->GetComponent(BODY));
 		// assume all obj with body component has position
-		if (body != nullptr) body->Integrate(200, frameTime, pGameObj->transform->position);
+		//if (body != nullptr) body->Integrate(200, frameTime, pGameObj->transform->position);
 	}
 
 }

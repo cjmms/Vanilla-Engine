@@ -75,7 +75,7 @@ GameObject* ResourceManager::LoadGameObject(const char* fileName)
 
     if (inputStream.is_open())
     {
-        std::cout << "Load Game Object: " << fileName << std::endl;
+        std::cout << "\n" <<"Load Game Object: " << fileName << std::endl;
 
         obj = new GameObject();
         while (std::getline(inputStream, componentName))
@@ -86,7 +86,8 @@ GameObject* ResourceManager::LoadGameObject(const char* fileName)
             if (componentName == "Sprite")      component = obj->AddComponent(SPRITE);
             if (componentName == "Controller")  component = obj->AddComponent(CONTROLLER);
             if (componentName == "UpDown")      component = obj->AddComponent(UP_DOWN);
-                
+            if (componentName == "Body")        component = obj->AddComponent(BODY);
+
             if (component != nullptr) component->Serialize(inputStream);
         }
         ObjectManager::getInstance().add(obj);

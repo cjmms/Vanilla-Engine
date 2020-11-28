@@ -32,6 +32,7 @@ void Sprite::draw(const Shader& shader)
 
 void Sprite::Serialize(std::ifstream& InputStream)
 {
+    std::cout << "Serializing Sprite" << std::endl;
     float vertices[] = {
         // positions         
         -0.25f,  0.25f, 0.0, 1.0,

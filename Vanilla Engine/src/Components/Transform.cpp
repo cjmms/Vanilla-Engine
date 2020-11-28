@@ -38,12 +38,11 @@ void Transform::moveRight(void)
 
 void Transform::Serialize(std::ifstream& InputStream)
 {
+    std::cout << "Serializing Transform" << std::endl;
     InputStream >> position.x;
     InputStream >> position.y;
     InputStream >> position.z;
 
-    std::cout << "x: " << position.x << std::endl;
-    std::cout << "y: " << position.y << std::endl;
-    std::cout << "z: " << position.z << std::endl;
+    std::cout << "x: " << position.x << "  y: " << position.y << "  z: " << position.z << std::endl;
 
 }

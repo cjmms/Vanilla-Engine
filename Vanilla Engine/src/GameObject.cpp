@@ -44,6 +44,7 @@ Component* GameObject::AddComponent(ComponentType type)
 	case BODY:
 		component = new Body();
 		this->body = static_cast<Body*>(component);
+		break;
 	default:
 		return nullptr;
 	}

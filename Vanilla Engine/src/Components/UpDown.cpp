@@ -27,6 +27,7 @@ void UpDown::update(void)
 
 void UpDown::Serialize(std::ifstream& stream)
 {
+	std::cout << "Serializing Updown" << std::endl;
 	int up;
 
 	stream >> up;
@@ -34,4 +35,7 @@ void UpDown::Serialize(std::ifstream& stream)
 
 	timer = timerLimit;
 	movingUp = (bool)up;
+
+	std::cout << "Up: "<< up << std::endl;
+	std::cout << "Timer limit: " << timer << std::endl;
 }

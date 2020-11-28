@@ -3,14 +3,19 @@
 #include "Components/Body.h"
 class Body;
 
-class CollisionManager
-{
-};
+// This file contains three class
+// 1. Shape (Abstract class)
+// 2. ShapeCircle inherits from Shape
+// 3. ShapeAABB inherits from Shape
+
+// derived classes from Shape have their own collision detection methods
+// Each body component should have 1 Shape
 
 
 
 // Each body has one Shape
 // Abstract Class
+// Shape class has a public ENUM that contains all Shape Type
 class Shape 
 {
 
@@ -24,7 +29,7 @@ public:
 
 	Shape(ShapeType type);
 	virtual ~Shape() {}
-	virtual bool pointCollision(glm::vec2 point) = 0;
+	virtual bool pointCollision(glm::vec2 point) const = 0;
 
 public:
 	Body* ownerBody;
@@ -39,10 +44,10 @@ public:
 class ShapeCircle : public Shape
 {
 public:
-	ShapeCircle();
+	ShapeCircle(float radius);
 	~ShapeCircle();
 
-	virtual bool pointCollision(glm::vec2 point) override;
+	virtual bool pointCollision(glm::vec2 point) const override;
 
 public:
 	float radius;
@@ -58,10 +63,10 @@ public:
 class ShapeAABB : public Shape
 {
 public:
-	ShapeAABB();
+	ShapeAABB(float left, float right, float top, float bottom);
 	~ShapeAABB();
 
-	virtual bool pointCollision(glm::vec2 point) override;
+	virtual bool pointCollision(glm::vec2 point) const override;
 
 public:
 	float left, right, top, bottom;

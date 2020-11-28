@@ -1,7 +1,6 @@
 #include "CollisionManager.h"
 
 
-
 Shape::Shape(ShapeType type)
 	:type(type), ownerBody(nullptr) 
 {}
@@ -11,16 +10,16 @@ Shape::Shape(ShapeType type)
 
 // ShapeCircle----------------------------------------
 
-ShapeCircle::ShapeCircle()
-	:Shape(CIRCLE), radius(0.0f)
+ShapeCircle::ShapeCircle(float radius)
+	:Shape(CIRCLE), radius(radius)
 {}
 
 
 ShapeCircle::~ShapeCircle()
 {}
 
-
-bool ShapeCircle::pointCollision(glm::vec2 point)
+// compare square distance with square radius
+bool ShapeCircle::pointCollision(glm::vec2 point) const
 {
 	float pointCircleSqrDis = (point.x - ownerBody->mPos.x) * (point.x - ownerBody->mPos.x)
 							+ (point.y - ownerBody->mPos.y) * (point.y - ownerBody->mPos.y);
@@ -36,8 +35,8 @@ bool ShapeCircle::pointCollision(glm::vec2 point)
 // ShapeAABB--------------------------------------------
 
 
-ShapeAABB::ShapeAABB()
-	:Shape(AABB), left(0.0f), right(0.0f), top(0.0f), bottom(0.0f)
+ShapeAABB::ShapeAABB(float left, float right, float top, float bottom)
+	:Shape(AABB), left(left), right(right), top(top), bottom(bottom)
 {}
 
 
@@ -45,8 +44,13 @@ ShapeAABB::~ShapeAABB()
 {}
 
 
-bool ShapeAABB::pointCollision(glm::vec2 point)
+bool ShapeAABB::pointCollision(glm::vec2 point) const
 {
-	return false;
+	if (point.x < left)		return false;
+	if (point.x > right)	return false;
+	if (point.y > top)		return false;
+	if (point.y < bottom)	return false;
+
+	return true;
 }
 

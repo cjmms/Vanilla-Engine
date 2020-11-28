@@ -23,5 +23,5 @@ void Controller::update(void)
 
 void Controller::Serialize(std::ifstream& stream)
 {
-
+    std::cout << "Serializing Controller" << std::endl;
 }
