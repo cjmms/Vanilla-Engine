@@ -54,3 +54,24 @@ bool ShapeAABB::pointCollision(glm::vec2 point) const
 	return true;
 }
 
+// Contact -----------------------------------
+
+Contact::Contact()
+{}
+
+
+Contact::~Contact()
+{}
+
+
+// CollisionManager --------------------------
+
+CollisionManager::CollisionManager()
+{}
+
+
+
+
+
+CollisionManager::~CollisionManager()
+{}

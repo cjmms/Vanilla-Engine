@@ -1,6 +1,7 @@
 #pragma once
 #include "ext.hpp"
 #include "Components/Body.h"
+#include <list>
 class Body;
 
 // This file contains three class
@@ -72,5 +73,37 @@ public:
 	float left, right, top, bottom;
 
 
+};
+
+
+// collision contact
+class Contact
+{
+public:
+	Contact();
+	~Contact();
+
+public:
+	Body* bodies[2];
+};
+
+
+
+
+class CollisionManager
+{
+public:
+	CollisionManager();
+	~CollisionManager();
+
+	void Reset();
+	bool CheckCollision(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
+
+public:
+	std::list<Contact*> contacts;
+
+	// 2D array of collision function ptrs
+	bool (*CollisionFunctions[Shape::NUM][Shape::NUM])
+		(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2, std::list<Contact*>& contacts);
 };
 

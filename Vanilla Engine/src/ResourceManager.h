@@ -37,7 +37,10 @@ public:
 	ResourceManager(ResourceManager const&) = delete;
 	void operator=(ResourceManager const&) = delete;
 
+	// Creating and Serializing each object
 	GameObject* LoadGameObject(const char* fileName);
+
+	// Read the level file, load all the game objects
 	void LoadLevel(const char * fileName);
 };
 

@@ -81,14 +81,14 @@ GameObject* ResourceManager::LoadGameObject(const char* fileName)
         while (std::getline(inputStream, componentName))
         {
             Component* component = nullptr;
-
             if (componentName == "Transform")   component = obj->AddComponent(TRANSFORM);
             if (componentName == "Sprite")      component = obj->AddComponent(SPRITE);
             if (componentName == "Controller")  component = obj->AddComponent(CONTROLLER);
             if (componentName == "UpDown")      component = obj->AddComponent(UP_DOWN);
             if (componentName == "Body")        component = obj->AddComponent(BODY);
 
-            if (component != nullptr) component->Serialize(inputStream);
+            // Serializing each component
+            if (component != nullptr)           component->Serialize(inputStream);
         }
         ObjectManager::getInstance().add(obj);
         
@@ -112,8 +112,6 @@ void ResourceManager::LoadLevel(const char* fileName)
         {
             std::string address = "res/Data/" + objName + ".txt";
             GameObject* obj = ResourceManager::getInstance().LoadGameObject(address.c_str());
-
-            if (obj != nullptr) obj->transform->Serialize(inputStream);
         }
 
         inputStream.close();

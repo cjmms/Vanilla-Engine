@@ -63,9 +63,9 @@ void Body::Serialize(std::ifstream& InputStream)
 		InputStream >> left >> right >> top >> bottom;
 
 		std::cout << "Left: " << left << 
-					" Right: " << right << 
-					" Top: " << top << 
-					" Bottom: " << bottom << std::endl;
+		  		   "  Right: " << right << 
+				   "  Top: " << top << 
+				   "  Bottom: " << bottom << std::endl;
 
 		shape = new ShapeAABB(left, right, top, bottom);
 		shape->ownerBody = this;
