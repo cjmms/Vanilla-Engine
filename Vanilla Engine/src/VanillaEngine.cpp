@@ -9,6 +9,9 @@ void VanillaEngine::init(void)
 
     InputManager::getInstance().init();
     ResourceManager::getInstance().init();
+    ObjectManager::getInstance().close();
+    PhysicsManager::getInstance().init();
+
 
     ResourceManager::getInstance().LoadLevel("res/Data/Level.txt");
 }

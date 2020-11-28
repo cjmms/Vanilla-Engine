@@ -2,6 +2,12 @@
 #include <cmath>
 
 
+bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
+bool CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
+bool CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeCircle, glm::vec2 posCircle);
+bool CheckCollisionCircleAABB(Shape* shapeCircle, glm::vec2 posCircle, Shape* shapeAABB, glm::vec2 posAABB);
+
+
 Shape::Shape(ShapeType type)
 	:type(type), ownerBody(nullptr) 
 {}
@@ -55,7 +61,7 @@ bool ShapeAABB::pointCollision(glm::vec2 point) const
 	return true;
 }
 
-// Contact -----------------------------------
+// Contact ----------------------------------------------------------
 
 Contact::Contact(Shape* shape1, Shape* shape2)
 {
@@ -66,7 +72,7 @@ Contact::Contact(Shape* shape1, Shape* shape2)
 
 Contact::~Contact()
 {
-	//delete bodies;
+	delete[] bodies;
 }
 
 
@@ -77,7 +83,7 @@ void Contact::set(Shape* shape1, Shape* shape2)
 }
 
 
-// CollisionManager --------------------------
+// CollisionManager -----------------------------------------------------
 
 CollisionManager& CollisionManager::getInstance(void)
 {
@@ -85,8 +91,37 @@ CollisionManager& CollisionManager::getInstance(void)
 	return manager;
 }
 
-CollisionManager::~CollisionManager()
-{}
+
+CollisionManager::~CollisionManager(){}
+
+// init collision functions
+// terrible implementation, but it works
+void CollisionManager::init(void)
+{
+	CollisionFunctions[Shape::AABB][Shape::AABB] = CheckCollisionAABBAABB;
+	CollisionFunctions[Shape::AABB][Shape::CIRCLE] = CheckCollisionAABBCircle;
+	CollisionFunctions[Shape::CIRCLE][Shape::AABB] = CheckCollisionAABBCircle;
+	CollisionFunctions[Shape::CIRCLE][Shape::CIRCLE] = CheckCollisionAABBCircle;
+}
+
+
+void CollisionManager::close(void)
+{
+	Reset();
+}
+
+
+void CollisionManager::Reset()
+{
+	for (auto contact : contacts) delete contact;
+	contacts.clear();
+}
+
+
+bool CollisionManager::CheckCollision(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
+{
+	return CollisionFunctions[shape1->type][shape2->type](shape1, pos1, shape2, pos2);
+}
 
 
 void CollisionManager::AddContact(Shape* shape1, Shape* shape2)
@@ -95,6 +130,10 @@ void CollisionManager::AddContact(Shape* shape1, Shape* shape2)
 }
 
 
+
+
+// These collision detection functions are hidden from everything except Collision Manager
+// These function can only get accessed by calling CheckCollision()
 bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
 {
 	ShapeAABB* aabb1 = static_cast<ShapeAABB*>(shape1);

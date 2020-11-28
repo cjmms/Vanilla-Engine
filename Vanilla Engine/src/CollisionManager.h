@@ -90,7 +90,9 @@ public:
 
 
 
-
+// Singleton
+// This manager is hidden from other managers except Physics Manager
+// This will be init when physics manager get init
 class CollisionManager
 {
 private:
@@ -119,10 +121,3 @@ public:
 	bool (*CollisionFunctions[Shape::NUM][Shape::NUM])
 		(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
 };
-
-bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
-bool CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
-bool CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeCircle, glm::vec2 posCircle);
-bool CheckCollisionCircleAABB(Shape* shapeCircle, glm::vec2 posCircle, Shape* shapeAABB, glm::vec2 posAABB);
-
-

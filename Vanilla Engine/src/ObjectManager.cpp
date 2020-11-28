@@ -24,6 +24,7 @@ ObjectManager& ObjectManager::getInstance(void)
 	return objMgr;
 }
 
+
 void ObjectManager::update( void )
 {
 	for (GameObject* obj : GameObjects) obj->update();

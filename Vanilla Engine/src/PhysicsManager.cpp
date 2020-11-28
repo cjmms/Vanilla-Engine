@@ -1,5 +1,5 @@
 #include "PhysicsManager.h"
-
+#include "CollisionManager.h"
 
 PhysicsManager::PhysicsManager()
 {}
@@ -30,13 +30,15 @@ void PhysicsManager::update(void)
 
 void PhysicsManager::init(void)
 {
-	
+	CollisionManager::getInstance().init();
 }
 
 
 
 void PhysicsManager::close(void)
-{}
+{
+	CollisionManager::getInstance().close();
+}
 
 
 PhysicsManager& PhysicsManager::getInstance(void)
