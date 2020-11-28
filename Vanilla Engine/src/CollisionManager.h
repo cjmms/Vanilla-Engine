@@ -80,8 +80,9 @@ public:
 class Contact
 {
 public:
-	Contact();
+	Contact(Shape* shape1, Shape* shape2);
 	~Contact();
+	void set(Shape* shape1, Shape* shape2);
 
 public:
 	Body* bodies[2];
@@ -98,6 +99,14 @@ public:
 
 	void Reset();
 	bool CheckCollision(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
+
+	void AddContact(Shape* shape1, Shape* shape2);
+
+	bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
+	bool CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
+	bool CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeCircle, glm::vec2 posCircle);
+	bool CheckCollisionCircleAABB(Shape* shapeCircle, glm::vec2 posCircle, Shape* shapeAABB, glm::vec2 posAABB);
+	
 
 public:
 	std::list<Contact*> contacts;
