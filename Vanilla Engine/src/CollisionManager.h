@@ -93,19 +93,23 @@ public:
 
 class CollisionManager
 {
+private:
+	CollisionManager(){}
+
 public:
-	CollisionManager();
 	~CollisionManager();
+	static CollisionManager& getInstance(void);
+
+	void init(void);
+	void close(void);
+
+	CollisionManager(CollisionManager const&) = delete;
+	void operator=(CollisionManager const&) = delete;
 
 	void Reset();
 	bool CheckCollision(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
 
 	void AddContact(Shape* shape1, Shape* shape2);
-
-	bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
-	bool CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
-	bool CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeCircle, glm::vec2 posCircle);
-	bool CheckCollisionCircleAABB(Shape* shapeCircle, glm::vec2 posCircle, Shape* shapeAABB, glm::vec2 posAABB);
 	
 
 public:
@@ -113,6 +117,12 @@ public:
 
 	// 2D array of collision function ptrs
 	bool (*CollisionFunctions[Shape::NUM][Shape::NUM])
-		(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2, std::list<Contact*>& contacts);
+		(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
 };
+
+bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
+bool CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
+bool CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeCircle, glm::vec2 posCircle);
+bool CheckCollisionCircleAABB(Shape* shapeCircle, glm::vec2 posCircle, Shape* shapeAABB, glm::vec2 posAABB);
+
 

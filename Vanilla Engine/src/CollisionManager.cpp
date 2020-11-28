@@ -1,4 +1,5 @@
 #include "CollisionManager.h"
+#include <cmath>
 
 
 Shape::Shape(ShapeType type)
@@ -65,7 +66,7 @@ Contact::Contact(Shape* shape1, Shape* shape2)
 
 Contact::~Contact()
 {
-	delete bodies;
+	//delete bodies;
 }
 
 
@@ -78,11 +79,11 @@ void Contact::set(Shape* shape1, Shape* shape2)
 
 // CollisionManager --------------------------
 
-CollisionManager::CollisionManager()
+CollisionManager& CollisionManager::getInstance(void)
 {
+	static CollisionManager manager;
+	return manager;
 }
-
-
 
 CollisionManager::~CollisionManager()
 {}
@@ -94,7 +95,7 @@ void CollisionManager::AddContact(Shape* shape1, Shape* shape2)
 }
 
 
-bool CollisionManager::CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
+bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
 {
 	ShapeAABB* aabb1 = static_cast<ShapeAABB*>(shape1);
 	ShapeAABB* aabb2 = static_cast<ShapeAABB*>(shape2);
@@ -112,19 +113,28 @@ bool CollisionManager::CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Sha
 	if (left1 > right2 || left2 > right1 || top1 > bottom2 || top2 > bottom1) return false;
 
 	// Add new contact
-	AddContact(shape1, shape1);
+	CollisionManager::getInstance().AddContact(shape1, shape1);
 
 	return true;
 }
 
 
-bool CollisionManager::CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
+bool CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
 {
-	return false;
+	float sqDis = pow((pos1.x - pos2.x), 2) + pow((pos1.y - pos2.y), 2);
+	float r1 = static_cast<ShapeCircle*>(shape1)->radius;
+	float r2 = static_cast<ShapeCircle*>(shape2)->radius;
+
+	if (sqDis > pow((r1 + r2), 2)) return false;
+
+	// Add new contact
+	CollisionManager::getInstance().AddContact(shape1, shape1);
+
+	return true;
 }
 
 
-bool CollisionManager::CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeCircle, glm::vec2 posCircle)
+bool CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeCircle, glm::vec2 posCircle)
 {
 	ShapeAABB* aabb = static_cast<ShapeAABB*>(shapeAABB);
 	ShapeCircle* circle = static_cast<ShapeCircle*>(shapeCircle);
@@ -146,13 +156,13 @@ bool CollisionManager::CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posA
 	if (circle->pointCollision(point) == false) return false;
 
 	// Add new contact
-	AddContact(shapeAABB, shapeCircle);
+	CollisionManager::getInstance().AddContact(shapeAABB, shapeCircle);
 
 	return true;
 }
 
 
-bool CollisionManager::CheckCollisionCircleAABB(Shape* shapeCircle, glm::vec2 posCircle, Shape* shapeAABB, glm::vec2 posAABB)
+bool CheckCollisionCircleAABB(Shape* shapeCircle, glm::vec2 posCircle, Shape* shapeAABB, glm::vec2 posAABB)
 {
 	return CheckCollisionAABBCircle(shapeAABB, posAABB, shapeCircle, posCircle);
 }
