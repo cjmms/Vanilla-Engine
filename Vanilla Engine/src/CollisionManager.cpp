@@ -113,7 +113,7 @@ void CollisionManager::close(void)
 
 void CollisionManager::Reset()
 {
-	//for (const auto& contact: contacts) delete contact;
+	for (auto contact: contacts) delete contact;
 	contacts.clear();
 }
 

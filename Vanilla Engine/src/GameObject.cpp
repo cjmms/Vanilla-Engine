@@ -67,3 +67,10 @@ Component* GameObject::GetComponent(ComponentType type)
 
 	return nullptr;
 }
+
+
+
+void GameObject::HandleEvent(Event& event)
+{
+	for (auto component : componentList) component->HandleEvent(event);
+}
