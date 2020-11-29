@@ -78,7 +78,7 @@ void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 {
 	Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
 	mPos = transform->position;
-
+/*
 	mPrevPos = mPos;
 
 	// compute acc
@@ -94,4 +94,5 @@ void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 	mPos = velocity * DeltaTime + mPos;
 
 	transform->position = glm::vec3(mPos.x, mPos.y, 0.0f);
+	*/
 }

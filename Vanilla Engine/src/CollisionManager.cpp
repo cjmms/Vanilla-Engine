@@ -101,7 +101,7 @@ void CollisionManager::init(void)
 	CollisionFunctions[Shape::AABB][Shape::AABB] = CheckCollisionAABBAABB;
 	CollisionFunctions[Shape::AABB][Shape::CIRCLE] = CheckCollisionAABBCircle;
 	CollisionFunctions[Shape::CIRCLE][Shape::AABB] = CheckCollisionAABBCircle;
-	CollisionFunctions[Shape::CIRCLE][Shape::CIRCLE] = CheckCollisionAABBCircle;
+	CollisionFunctions[Shape::CIRCLE][Shape::CIRCLE] = CheckCollisionCircleCircle;
 }
 
 
@@ -113,13 +113,14 @@ void CollisionManager::close(void)
 
 void CollisionManager::Reset()
 {
-	for (auto contact : contacts) delete contact;
+	//for (const auto& contact: contacts) delete contact;
 	contacts.clear();
 }
 
 
 bool CollisionManager::CheckCollision(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
 {
+	//std::cout<< "check collision" <<std::endl;
 	return CollisionFunctions[shape1->type][shape2->type](shape1, pos1, shape2, pos2);
 }
 
@@ -136,6 +137,7 @@ void CollisionManager::AddContact(Shape* shape1, Shape* shape2)
 // These function can only get accessed by calling CheckCollision()
 bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
 {
+	//std::cout << "check collision AABBAABB" << std::endl;
 	ShapeAABB* aabb1 = static_cast<ShapeAABB*>(shape1);
 	ShapeAABB* aabb2 = static_cast<ShapeAABB*>(shape2);
 
@@ -160,9 +162,16 @@ bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::v
 
 bool CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
 {
+	//std::cout << "check collision C2C" << std::endl;
+	//std::cout << "pos1: " << pos1.x << ", " << pos1.y << std::endl;
+	//std::cout << "pos2: " << pos2.x << ", " << pos2.y << std::endl;
+
 	float sqDis = pow((pos1.x - pos2.x), 2) + pow((pos1.y - pos2.y), 2);
 	float r1 = static_cast<ShapeCircle*>(shape1)->radius;
 	float r2 = static_cast<ShapeCircle*>(shape2)->radius;
+
+	//std::cout << "obj1.r: " << r1 << std::endl;
+	//std::cout << "obj2.r: " << r2 << std::endl;
 
 	if (sqDis > pow((r1 + r2), 2)) return false;
 
@@ -175,6 +184,7 @@ bool CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, gl
 
 bool CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeCircle, glm::vec2 posCircle)
 {
+	//std::cout << "check collision aabb2c" << std::endl;
 	ShapeAABB* aabb = static_cast<ShapeAABB*>(shapeAABB);
 	ShapeCircle* circle = static_cast<ShapeCircle*>(shapeCircle);
 
@@ -203,5 +213,6 @@ bool CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeC
 
 bool CheckCollisionCircleAABB(Shape* shapeCircle, glm::vec2 posCircle, Shape* shapeAABB, glm::vec2 posAABB)
 {
+	//std::cout << "check collision C2AABB" << std::endl;
 	return CheckCollisionAABBCircle(shapeAABB, posAABB, shapeCircle, posCircle);
 }
