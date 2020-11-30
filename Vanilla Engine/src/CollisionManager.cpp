@@ -72,7 +72,8 @@ Contact::Contact(Shape* shape1, Shape* shape2)
 
 Contact::~Contact()
 {
-	delete[] bodies;
+	//bodies[0];
+	//delete bodies;
 }
 
 
@@ -113,7 +114,7 @@ void CollisionManager::close(void)
 
 void CollisionManager::Reset()
 {
-	for (auto contact: contacts) delete contact;
+	for (auto contact : contacts) delete contact;
 	contacts.clear();
 }
 

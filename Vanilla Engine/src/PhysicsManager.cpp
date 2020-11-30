@@ -1,6 +1,18 @@
 #include "PhysicsManager.h"
 #include "CollisionManager.h"
 
+
+CollideEvent::CollideEvent()
+	:Event(COLLISION)
+{}
+
+CollideEvent::~CollideEvent()
+{}
+
+
+
+
+
 PhysicsManager::PhysicsManager()
 {}
 
@@ -52,6 +64,13 @@ void PhysicsManager::update(void)
 	/*
 	* Solve Collision
 	*/
+	for (auto contact : CollisionManager::getInstance().contacts)
+	{
+		CollideEvent event;
+
+		contact->bodies[0]->HandleEvent(&event);
+		contact->bodies[1]->HandleEvent(&event);
+	}
 
 }
 

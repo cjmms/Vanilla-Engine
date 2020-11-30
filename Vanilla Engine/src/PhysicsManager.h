@@ -3,6 +3,18 @@
 #include "GameObject.h"
 #include "ObjectManager.h"
 #include "FPSController.h"
+#include "EventManager.h"
+
+class CollideEvent : public Event
+{
+public:
+	CollideEvent();
+	~CollideEvent();
+
+	
+};
+
+
 
 
 // Singleton

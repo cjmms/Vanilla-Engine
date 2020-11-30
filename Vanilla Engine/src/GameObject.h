@@ -17,7 +17,7 @@ public:
 
 	Component* AddComponent(ComponentType type);
 	Component* GetComponent(ComponentType type);
-	void HandleEvent(Event& event);
+	void HandleEvent(Event* event);
 
 	virtual void Serialize(std::ifstream& InputStream) {};
 

@@ -42,3 +42,8 @@ void ObjectManager::close( void )
 	for (GameObject* object : GameObjects) delete object;
 	GameObjects.clear();
 }
+
+/*void ObjectManager::HandleEvent(Event* event)
+{
+	for (GameObject* obj : GameObjects) obj->HandleEvent(event);
+}*/

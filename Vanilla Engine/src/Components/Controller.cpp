@@ -1,5 +1,7 @@
 #include "Controller.h"
 #include "../GameObject.h"
+#include "../EventManager.h"
+#include "../PhysicsManager.h"
 
 
 
@@ -24,4 +26,14 @@ void Controller::update(void)
 void Controller::Serialize(std::ifstream& stream)
 {
     std::cout << "Serializing Controller" << std::endl;
+}
+
+
+void Controller::HandleEvent(Event* event)
+{
+    if (event->type == EventType::COLLISION)
+    {
+        CollideEvent* collideEvent = static_cast<CollideEvent*>(event);
+        std::cout << "fewfewfewfw" << std::endl;
+    }
 }

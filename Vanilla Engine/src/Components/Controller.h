@@ -13,5 +13,7 @@ public:
 	
 	virtual void update(void) override;
 
+	virtual void HandleEvent(Event* event) override;
+
 };
 

@@ -70,7 +70,7 @@ Component* GameObject::GetComponent(ComponentType type)
 
 
 
-void GameObject::HandleEvent(Event& event)
+void GameObject::HandleEvent(Event* event)
 {
 	for (auto component : componentList) component->HandleEvent(event);
 }

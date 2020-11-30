@@ -30,7 +30,7 @@ public:
 
 	// component should be able to handle event
 	// but not every component should do so
-	virtual void HandleEvent(Event& event) {};
+	virtual void HandleEvent(Event* event) {};
 
 	inline ComponentType getType() { return type; };
 	GameObject* owner;
