@@ -29,7 +29,8 @@ void EventManager::update(float frameTime)
 
 		if (e->timer <= 0.0f)		// trigger the event when timer reachs 0
 		{
-			BroadcastEvent(e);
+			//BroadcastEvent(e);
+			BroadcastEventToSubs(e);
 			delete e;
 			i = events.erase(i);
 		}
@@ -54,4 +55,23 @@ void EventManager::AddEvent(Event* event)
 {
 	events.push_back(event);
 
+}
+
+
+
+void EventManager::Subscribe(EventType type, GameObject* obj)
+{
+	std::vector<GameObject*>& listOfSubs = subs[type];
+
+	for (auto p : listOfSubs)	// check if it's subscribed already
+		if (p == obj) return;
+	
+	listOfSubs.push_back(obj);
+}
+
+void EventManager::BroadcastEventToSubs(Event* event)
+{
+	std::vector<GameObject*>& listOfSubs = subs[event->type];
+
+	for (auto p : listOfSubs) p->HandleEvent(event);
 }

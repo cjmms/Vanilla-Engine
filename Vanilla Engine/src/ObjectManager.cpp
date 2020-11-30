@@ -43,7 +43,3 @@ void ObjectManager::close( void )
 	GameObjects.clear();
 }
 
-/*void ObjectManager::HandleEvent(Event* event)
-{
-	for (GameObject* obj : GameObjects) obj->HandleEvent(event);
-}*/

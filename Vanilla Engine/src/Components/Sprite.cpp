@@ -25,7 +25,7 @@ void Sprite::draw(const Shader& shader)
     glm::mat4 Model = glm::translate(glm::mat4(1.0f), transform->position);
     shader.setMat4("Model", Model);
 
-    //std::cout << "pos: x: " << pos.x << "  pos: y " << pos.y  << " pos: z " << pos.z<< std::endl;
+   // std::cout << "pos: x: " << transform->position.x << "  pos: y " << transform->position.y  << " pos: z " << transform->position.z<< std::endl;
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

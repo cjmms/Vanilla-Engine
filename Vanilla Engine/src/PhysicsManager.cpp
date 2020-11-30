@@ -67,6 +67,7 @@ void PhysicsManager::update(void)
 				// test for no delay event
 				CollideEvent* event1 = new CollideEvent();
 				EventManager::getInstance().AddEvent(event1);
+				EventManager::getInstance().Subscribe(COLLISION, body1->owner);
 
 				// test for delayed event
 				CollideEvent* event = new CollideEvent(2);

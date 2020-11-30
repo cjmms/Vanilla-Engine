@@ -6,6 +6,7 @@ class PlayerHitEvent: public Event
 {
 public:
 	PlayerHitEvent();
+	PlayerHitEvent(float time);
 	~PlayerHitEvent();
 };
 

@@ -7,17 +7,19 @@ PlayerHitEvent::PlayerHitEvent()
     :Event(EventType::PLAYER_HIT)
 {}
 
+PlayerHitEvent::PlayerHitEvent(float time)
+    : Event(EventType::PLAYER_HIT, time * 1000.0f)
+{}
 
 PlayerHitEvent::~PlayerHitEvent()
 {}
 
 
-
+//---------------------------------------------------------------
 
 
 Controller::Controller() : Component(CONTROLLER)
-{
-}
+{}
 
 
 Controller::~Controller()
