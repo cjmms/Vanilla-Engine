@@ -3,6 +3,16 @@
 #include "../EventManager.h"
 #include "../PhysicsManager.h"
 
+PlayerHitEvent::PlayerHitEvent()
+    :Event(EventType::PLAYER_HIT)
+{}
+
+
+PlayerHitEvent::~PlayerHitEvent()
+{}
+
+
+
 
 
 Controller::Controller() : Component(CONTROLLER)

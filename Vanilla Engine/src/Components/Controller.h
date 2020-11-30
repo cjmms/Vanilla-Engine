@@ -1,7 +1,12 @@
 #pragma once
 #include "Component.h"
 
-
+class PlayerHitEvent: public Event
+{
+public:
+	PlayerHitEvent();
+	~PlayerHitEvent();
+};
 
 class Controller : public Component
 {
