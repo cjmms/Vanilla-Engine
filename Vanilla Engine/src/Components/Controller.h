@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "../EventManager.h"
 
 class PlayerHitEvent: public Event
 {

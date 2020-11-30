@@ -1,6 +1,6 @@
 #include "Controller.h"
 #include "../GameObject.h"
-#include "../EventManager.h"
+
 #include "../PhysicsManager.h"
 
 PlayerHitEvent::PlayerHitEvent()
@@ -45,5 +45,8 @@ void Controller::HandleEvent(Event* event)
     {
         CollideEvent* collideEvent = static_cast<CollideEvent*>(event);
         std::cout << "fewfewfewfw" << std::endl;
+
+        PlayerHitEvent e;
+        EventManager::getInstance().BroadcastEvent(&e);
     }
 }

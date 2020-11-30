@@ -10,6 +10,7 @@ void VanillaEngine::init(void)
     InputManager::getInstance().init();
     ResourceManager::getInstance().init();
     ObjectManager::getInstance().close();
+    EventManager::getInstance().init();
     PhysicsManager::getInstance().init();
 
 
@@ -45,9 +46,11 @@ void VanillaEngine::closeUI(void)
 void VanillaEngine::close(void)
 {
     PhysicsManager::getInstance().close();
+    EventManager::getInstance().close();
     ObjectManager::getInstance().close();
     ResourceManager::getInstance().close();
     InputManager::getInstance().close();
+
     closeUI();
 }
 

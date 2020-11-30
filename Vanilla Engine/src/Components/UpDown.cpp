@@ -1,6 +1,7 @@
 #include "UpDown.h"
 #include "../GameObject.h"
 #include "../FPSController.h"
+#include "../EventManager.h"
 
 
 UpDown::UpDown()
@@ -38,4 +39,20 @@ void UpDown::Serialize(std::ifstream& stream)
 
 	std::cout << "Up: "<< up << std::endl;
 	std::cout << "Timer limit: " << timer << std::endl;
+}
+
+
+
+
+
+void UpDown::HandleEvent(Event* event)
+{
+	if (event->type == EventType::PLAYER_HIT)
+	{
+		//CollideEvent* collideEvent = static_cast<CollideEvent*>(event);
+		std::cout << "Player Hit" << std::endl;
+
+		//PlayerHitEvent e;
+		///EventManager::getInstance().BroadcastEvent(&e);
+	}
 }

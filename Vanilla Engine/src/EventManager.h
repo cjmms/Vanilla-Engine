@@ -1,5 +1,5 @@
 #pragma once
-
+#include <list>
 
 
 enum EventType
@@ -16,12 +16,14 @@ enum EventType
 class Event
 {
 public:
-	Event(EventType ptype) : type(ptype) {};
+	Event(EventType ptype, float t) : type(ptype), timer(t) {};
+	Event(EventType ptype) : type(ptype), timer(0.0f) {};
 	virtual ~Event() {};
 
 	
 public:
 	EventType type;
+	float timer;
 };
 
 
@@ -33,8 +35,11 @@ private:
 	EventManager();
 
 public:
+	std::list<Event*> events;
+
 	~EventManager();
 	void BroadcastEvent(Event* event);
+	void AddDelayedEvent(Event* event);
 
 	void init(void);
 	void close(void);
@@ -43,5 +48,7 @@ public:
 	void operator=(EventManager const&) = delete;
 
 	static EventManager& getInstance(void);
+
+	void update(float frameTime);
 
 };

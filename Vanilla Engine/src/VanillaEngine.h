@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "ObjectManager.h"
 #include "PhysicsManager.h"
+#include "EventManager.h"
 
 
 class VanillaEngine

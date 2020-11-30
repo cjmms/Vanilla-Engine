@@ -15,6 +15,7 @@ public:
 
 	virtual void update(void) override;
 	virtual void Serialize(std::ifstream& stream) override;
+	virtual void HandleEvent(Event* event) override;
 
 };
 
