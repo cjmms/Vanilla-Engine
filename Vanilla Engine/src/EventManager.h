@@ -39,7 +39,7 @@ public:
 
 	~EventManager();
 	void BroadcastEvent(Event* event);
-	void AddDelayedEvent(Event* event);
+	void AddEvent(Event* event);
 
 	void init(void);
 	void close(void);

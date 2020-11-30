@@ -9,6 +9,7 @@ class CollideEvent : public Event
 {
 public:
 	CollideEvent();
+	CollideEvent(float time);
 	~CollideEvent();
 
 	

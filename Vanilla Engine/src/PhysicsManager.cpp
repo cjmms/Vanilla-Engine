@@ -6,6 +6,10 @@ CollideEvent::CollideEvent()
 	:Event(COLLISION)
 {}
 
+CollideEvent::CollideEvent(float time)
+	: Event(COLLISION, time * 1000.0f)
+{}
+
 CollideEvent::~CollideEvent()
 {}
 
@@ -57,7 +61,17 @@ void PhysicsManager::update(void)
 			if (body2 == nullptr || body1 == body2) continue;
 			bool collide = CollisionManager::getInstance().CheckCollision( body1->shape, body1->mPos,
 															body2->shape, body2->mPos );
-			if (collide) std::cout << "Collision!!!!!" << std::endl;
+			//if (collide) std::cout << "Collision!!!!!" << std::endl;
+			if (collide)
+			{
+				// test for no delay event
+				CollideEvent* event1 = new CollideEvent();
+				EventManager::getInstance().AddEvent(event1);
+
+				// test for delayed event
+				CollideEvent* event = new CollideEvent(2);
+				EventManager::getInstance().AddEvent(event);
+			}
 		}
 	}
 

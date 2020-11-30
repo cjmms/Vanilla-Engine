@@ -20,7 +20,7 @@ void EventManager::init(void)
 {}
 
 
-
+// iterate all the events inside event list and trigger them base on time
 void EventManager::update(float frameTime)
 {
 	for (auto i = events.begin(); i != events.end();) {
@@ -50,7 +50,7 @@ EventManager& EventManager::getInstance(void)
 }
 
 
-void EventManager::AddDelayedEvent(Event* event)
+void EventManager::AddEvent(Event* event)
 {
 	events.push_back(event);
 

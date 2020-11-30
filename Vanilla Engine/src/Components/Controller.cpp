@@ -44,9 +44,12 @@ void Controller::HandleEvent(Event* event)
     if (event->type == EventType::COLLISION)
     {
         CollideEvent* collideEvent = static_cast<CollideEvent*>(event);
-        std::cout << "fewfewfewfw" << std::endl;
+        //std::cout << "fewfewfewfw" << std::endl;
 
-        PlayerHitEvent e;
-        EventManager::getInstance().BroadcastEvent(&e);
+        Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
+        transform->position.x -= 1.0f;
+
+        //PlayerHitEvent e;
+        //EventManager::getInstance().BroadcastEvent(&e);
     }
 }
