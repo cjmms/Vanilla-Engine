@@ -36,5 +36,16 @@ public:
 
 	static PhysicsManager& getInstance(void);
 
+private:
+	void SolveContact(void) const;
+	void Integrate(float frameTime) const;
+	void CollisionDetection(void) const;
+
+	// This method sends events(with type COLLISION) to event manager
+	// It assumes each collision happens between two objects
+	// Therefore, two events will be sent and subscribed to event manager
+	// Broadcasting Collision event simply doesn't make sense logically
+	void SendCollisionEvents(GameObject* obj1, GameObject* obj2) const;
+
 };
 

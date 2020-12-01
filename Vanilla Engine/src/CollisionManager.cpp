@@ -155,7 +155,7 @@ bool CheckCollisionAABBAABB(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::v
 	if (left1 > right2 || left2 > right1 || top1 > bottom2 || top2 > bottom1) return false;
 
 	// Add new contact
-	CollisionManager::getInstance().AddContact(shape1, shape1);
+	//CollisionManager::getInstance().AddContact(shape1, shape1);
 
 	return true;
 }
@@ -177,7 +177,7 @@ bool CheckCollisionCircleCircle(Shape* shape1, glm::vec2 pos1, Shape* shape2, gl
 	if (sqDis > pow((r1 + r2), 2)) return false;
 
 	// Add new contact
-	CollisionManager::getInstance().AddContact(shape1, shape1);
+	//CollisionManager::getInstance().AddContact(shape1, shape1);
 
 	return true;
 }
@@ -206,7 +206,7 @@ bool CheckCollisionAABBCircle(Shape* shapeAABB, glm::vec2 posAABB, Shape* shapeC
 	if (circle->pointCollision(point) == false) return false;
 
 	// Add new contact
-	CollisionManager::getInstance().AddContact(shapeAABB, shapeCircle);
+	//CollisionManager::getInstance().AddContact(shapeAABB, shapeCircle);
 
 	return true;
 }

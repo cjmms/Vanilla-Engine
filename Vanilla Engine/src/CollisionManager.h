@@ -111,10 +111,13 @@ public:
 	void Reset();
 	bool CheckCollision(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2);
 
+	// not used
+	// Event Manager will handle all the collision events
 	void AddContact(Shape* shape1, Shape* shape2);
 	
 
 public:
+	// not used
 	std::list<Contact*> contacts;
 
 	// 2D array of collision function ptrs

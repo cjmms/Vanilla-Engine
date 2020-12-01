@@ -36,49 +36,23 @@ void PhysicsManager::update(void)
 	float frameTime = FPSController::getInstance().getFrameTime();
 
 	/*
-	* Moving objects
+	* Moving objects base on physics property
+	* velocity, acceleration, etc.
 	*/
-	for (auto pGameObj : ObjectManager::getInstance().GameObjects)
-	{
-		Body* body = static_cast<Body*>(pGameObj->GetComponent(BODY));
-		// assume all obj with body component has position
-		if (body != nullptr) body->Integrate(200, frameTime, pGameObj->transform->position);
-	}
+	Integrate(frameTime);
 
-	/*
-	* Collision Detection
-	*/
-	CollisionManager::getInstance().Reset();
+	CollisionDetection();
 
-	for (auto pGameObj1 : ObjectManager::getInstance().GameObjects)
-	{
-		Body* body1 = static_cast<Body*>(pGameObj1->GetComponent(BODY));
-		if (body1 == nullptr) continue;
+	//SolveContact();
+}
 
-		for (auto pGameObj2 : ObjectManager::getInstance().GameObjects)
-		{
-			Body * body2 = static_cast<Body*>(pGameObj2->GetComponent(BODY));
-			if (body2 == nullptr || body1 == body2) continue;
-			bool collide = CollisionManager::getInstance().CheckCollision( body1->shape, body1->mPos,
-															body2->shape, body2->mPos );
-			//if (collide) std::cout << "Collision!!!!!" << std::endl;
-			if (collide)
-			{
-				// test for no delay event
-				CollideEvent* event1 = new CollideEvent();
-				EventManager::getInstance().AddEvent(event1);
-				EventManager::getInstance().Subscribe(COLLISION, body1->owner);
 
-				// test for delayed event
-				CollideEvent* event = new CollideEvent(2);
-				EventManager::getInstance().AddEvent(event);
-			}
-		}
-	}
-
-	/*
-	* Solve Collision
-	*/
+/*
+* loop through all contacts
+* send an event to two contact objects
+*/
+void PhysicsManager::SolveContact(void) const
+{
 	for (auto contact : CollisionManager::getInstance().contacts)
 	{
 		CollideEvent event;
@@ -88,6 +62,63 @@ void PhysicsManager::update(void)
 	}
 
 }
+
+
+
+void PhysicsManager::Integrate(float frameTime) const
+{
+	for (auto pGameObj : ObjectManager::getInstance().GameObjects)
+	{
+		Body* body = static_cast<Body*>(pGameObj->GetComponent(BODY));
+		// assume all obj with body component has position
+		if (body != nullptr) body->Integrate(200, frameTime, pGameObj->transform->position);
+	}
+}
+
+
+/*
+* Sending events to Event Manager
+* Delayed event doesn't make sense for collision event
+* 2 events are created dynamically since they are linked to a sepcific object
+*/
+void PhysicsManager::SendCollisionEvents(GameObject* obj1, GameObject* obj2) const
+{
+	CollideEvent* event1 = new CollideEvent();
+	EventManager::getInstance().AddEvent(event1);
+	EventManager::getInstance().Subscribe(COLLISION, obj1);
+
+	CollideEvent* event2 = new CollideEvent();
+	EventManager::getInstance().AddEvent(event2);
+	EventManager::getInstance().Subscribe(COLLISION, obj2);
+}
+
+
+/*
+* Iterate all game objects and check if they are colliding with each other
+* If Collision happens, send events
+* 
+* This method ASSUMES that each obj has a body component
+*/
+void PhysicsManager::CollisionDetection(void) const
+{
+	CollisionManager::getInstance().Reset();
+
+	for (auto pGameObj1 = ObjectManager::getInstance().GameObjects.begin(); pGameObj1 != ObjectManager::getInstance().GameObjects.end(); ++pGameObj1)
+	{
+		Body* body1 = static_cast<Body*>((*pGameObj1)->GetComponent(BODY));
+
+		for (auto pGameObj2 = pGameObj1 + 1; pGameObj2 != ObjectManager::getInstance().GameObjects.end(); ++pGameObj2)
+		{
+			Body* body2 = static_cast<Body*>((*pGameObj2)->GetComponent(BODY));
+
+			if (CollisionManager::getInstance().CheckCollision(body1->shape, body1->mPos, body2->shape, body2->mPos))
+				SendCollisionEvents(body1->owner, body2->owner);
+		}
+	}
+}
+
+
+
 
 void PhysicsManager::init(void)
 {
@@ -100,6 +131,7 @@ void PhysicsManager::close(void)
 {
 	CollisionManager::getInstance().close();
 }
+
 
 
 PhysicsManager& PhysicsManager::getInstance(void)
