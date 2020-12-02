@@ -36,6 +36,12 @@ void Transform::moveRight(void)
     position.x += 0.01f;
 }
 
+void Transform::move(glm::vec2 dis)
+{
+    position.x += dis.x;
+    position.y += dis.y;
+}
+
 void Transform::Serialize(std::ifstream& InputStream)
 {
     std::cout << "Serializing Transform" << std::endl;

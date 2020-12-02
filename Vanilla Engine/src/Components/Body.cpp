@@ -4,7 +4,7 @@
 #include "../ObjectManager.h"
 
 Body::Body()
-	: mPos(glm::vec2(0.0f)), mPrevPos(glm::vec2(0.0f)), velocity(glm::vec2(0.0f)),
+	: mPos(glm::vec2(0.0f)), mPrevPos(glm::vec2(0.0f)), velocity(0.0f),
 	  acc(glm::vec2(0.0f)), totalF(glm::vec2(0.0f)), mMass(1.0f), mInvMass(1.0f), 
 	  Component(BODY), shape(nullptr)
 {}
@@ -76,6 +76,14 @@ void Body::Serialize(std::ifstream& InputStream)
 		shape = new ShapeAABB(left, right, top, bottom);
 		shape->ownerBody = this;
 	}
+
+	std::string v;
+	InputStream >> v;
+	if (v == "Velocity")
+	{
+		InputStream >> velocity;
+		std::cout << "Velocity: " << velocity  << std::endl;
+	}
 	
 }
 
@@ -84,6 +92,13 @@ void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 {
 	Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
 	mPos = transform->position;
+
+	// direction of enemy
+	// glm::vec2(0.0) is target position, terminal coordinates
+	glm::vec2 v = velocity *  glm::normalize( glm::vec2(0.0) - mPos );
+
+	if (velocity != 0) owner->transform->move(v);
+
 /*
 	mPrevPos = mPos;
 
@@ -113,11 +128,7 @@ void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 
 void Body::HandleEvent(Event* event)
 {
-	// get attcked, if health reachs 0, remove obj
-	if (event->type == EventType::COLLISION)
-	{
-		//--health;
-	}
+
 }
 
 

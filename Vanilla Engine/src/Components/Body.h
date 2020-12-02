@@ -34,7 +34,7 @@ public:
 public:
 	glm::vec2 mPos;
 	glm::vec2 mPrevPos;
-	glm::vec2 velocity;
+	float velocity;
 	glm::vec2 acc;
 	glm::vec2 totalF;
 	float mMass, mInvMass;

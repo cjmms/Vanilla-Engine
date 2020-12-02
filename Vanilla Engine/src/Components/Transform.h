@@ -16,6 +16,8 @@ public:
 	void moveLeft(void);
 	void moveRight(void);
 
+	void move(glm::vec2 dis);
+
 	virtual void Serialize(std::ifstream& stream) override;
 
 	virtual void print() const override;
