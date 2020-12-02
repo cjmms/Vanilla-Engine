@@ -6,7 +6,7 @@
 Body::Body()
 	: mPos(glm::vec2(0.0f)), mPrevPos(glm::vec2(0.0f)), velocity(glm::vec2(0.0f)),
 	  acc(glm::vec2(0.0f)), totalF(glm::vec2(0.0f)), mMass(1.0f), mInvMass(1.0f), 
-	  Component(BODY), shape(nullptr), health(1)
+	  Component(BODY), shape(nullptr)
 {}
 
 
@@ -72,10 +72,11 @@ void Body::Serialize(std::ifstream& InputStream)
 		shape->ownerBody = this;
 	}
 
-	std::string h;
-	InputStream >> h;
-	if (h == "health") InputStream >> health;
+	//std::string h;
+	//InputStream >> h;
+	//if (h == "health") InputStream >> health;
 
+	
 }
 
 
@@ -104,10 +105,7 @@ void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 	
 }
 
-bool Body::dead(void)
-{
-	return health <= 0;
-}
+
 
 
 
@@ -118,7 +116,7 @@ void Body::HandleEvent(Event* event)
 	// get attcked, if health reachs 0, remove obj
 	if (event->type == EventType::COLLISION)
 	{
-		--health;
+		//--health;
 	}
 }
 

@@ -4,6 +4,7 @@
 #include "./Components/Controller.h"
 #include "./Components/UpDown.h"
 #include "./Components/Body.h"
+#include "./Components/Attribute.h"
 #include <vector>
 
 
@@ -30,6 +31,6 @@ public:
 	Controller *controller;
 	UpDown* upDown;
 	Body* body;
-
+	Attribute* attribute;
 };
 

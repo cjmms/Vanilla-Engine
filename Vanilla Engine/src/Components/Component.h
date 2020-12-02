@@ -14,7 +14,8 @@ enum ComponentType
 	SPRITE,
 	CONTROLLER,
 	UP_DOWN,
-	BODY
+	BODY,
+	ATTRIBUTE
 };
 
 
