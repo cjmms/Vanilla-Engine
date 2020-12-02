@@ -8,6 +8,7 @@
 #include <unordered_map>
 
 
+
 class GameObject;
 
 struct Texture
@@ -27,7 +28,7 @@ public:
 
 	static ResourceManager& getInstance(void);
 
-	void createTexture(unsigned int &id, const char* filePath);
+	void createTexture(std::string filePath);
 	
 	void init(void);
 	void close(void);
@@ -42,5 +43,15 @@ public:
 
 	// Read the level file, load all the game objects
 	void LoadLevel(const char * fileName);
+
+	void bindTexture(std::string address);
+
+	void bindRecVAO(void);
+
+private:
+	void initRec(void);
+
+	std::unordered_map<std::string, unsigned int> textures;
+	unsigned int recVAO;
 };
 

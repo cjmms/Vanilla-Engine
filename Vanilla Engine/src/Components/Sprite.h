@@ -17,7 +17,7 @@ public:
 
 	virtual void print() const override {};
 
-	unsigned int TexID;
+	std::string address;
 	
 
 

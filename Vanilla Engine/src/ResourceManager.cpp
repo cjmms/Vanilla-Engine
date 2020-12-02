@@ -3,12 +3,15 @@
 #include "ObjectManager.h"
 
 
-void ResourceManager::createTexture(unsigned int &id, const char* filePath)
+void ResourceManager::createTexture(std::string filePath)
 {
-    glGenTextures(1, &id);
+    // texture is created already, return
+    //if (textures.find(filePath) != textures.end()) return;
+    
+    glGenTextures(1, &textures[filePath]);
 
     int width, height, nrComponents;
-    unsigned char* data = stbi_load(filePath, &width, &height, &nrComponents, 0);
+    unsigned char* data = stbi_load(filePath.c_str(), &width, &height, &nrComponents, 0);
     if (data)
     {
         GLenum internalFormat;
@@ -29,7 +32,7 @@ void ResourceManager::createTexture(unsigned int &id, const char* filePath)
         }
 
         stbi_set_flip_vertically_on_load(true);
-        glBindTexture(GL_TEXTURE_2D, id);
+        glBindTexture(GL_TEXTURE_2D, textures[filePath]);
         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, dataFormat, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -49,11 +52,53 @@ void ResourceManager::createTexture(unsigned int &id, const char* filePath)
 
 
 
+void ResourceManager::bindTexture(std::string address)
+{
+    glBindTexture(GL_TEXTURE_2D, textures[address]);
+}
+
+
 ResourceManager::~ResourceManager(){}
 
 
 void ResourceManager::init(void)
-{}
+{
+    recVAO = 0;
+    initRec();
+}
+
+void ResourceManager::bindRecVAO(void)
+{
+    glBindVertexArray(recVAO);
+}
+
+
+void ResourceManager::initRec(void)
+{
+    float vertices[] = {
+        // positions         
+        -0.25f,  0.25f, 0.0, 1.0,
+        -0.25f, -0.25f, 0.0, 0.0,
+         0.25f,  0.25f, 1.0, 1.0,
+         0.25f, -0.25f, 1.0, 0.0
+    };
+
+    GLuint VBO;
+    glGenVertexArrays(1, &recVAO);
+    glBindVertexArray(recVAO);
+
+    // VBO
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    // VAO
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+}
 
 
 void ResourceManager::close(void)
