@@ -28,7 +28,8 @@ public:
 
 	virtual void HandleEvent(Event* event) override;
 
-	//bool dead(void);
+	virtual void print() const override;
+
 
 public:
 	glm::vec2 mPos;
@@ -40,7 +41,6 @@ public:
 
 	Shape* shape;
 
-	//unsigned int health;
 		
 
 

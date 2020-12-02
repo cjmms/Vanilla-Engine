@@ -43,6 +43,11 @@ void Transform::Serialize(std::ifstream& InputStream)
     InputStream >> position.y;
     InputStream >> position.z;
 
-    std::cout << "x: " << position.x << "  y: " << position.y << "  z: " << position.z << std::endl;
+    print();
+}
 
+
+void Transform::print() const
+{
+    std::cout << "x: " << position.x << "  y: " << position.y << "  z: " << position.z << std::endl;
 }

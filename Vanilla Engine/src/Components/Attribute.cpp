@@ -4,7 +4,7 @@
 #include "../ObjectManager.h"
 
 Attribute::Attribute()
-	:Component(ATTRIBUTE), health(1)
+	:Component(ATTRIBUTE), health(1), hostile(false)
 {}
 
 
@@ -24,23 +24,36 @@ void Attribute::update(void)
 // serialize mass and inMass
 void Attribute::Serialize(std::ifstream& InputStream)
 {
-	//std::cout << "Serializing Attributes!!!!!!!!!!!!!!!!" << std::endl;
 	std::string h;
 	InputStream >> h;
 	if (h == "health") InputStream >> health;
 
+	InputStream >> h;
+	if (h == "hostile") InputStream >> hostile;
+
+
 	std::cout << "Serializing Attributes" << std::endl;
-	std::cout << "Health: " << health << std::endl;
+	print();
+}
+
+
+void Attribute::getAttacked(Event * event)
+{
+	if (event->type == EventType::COLLISION)  --health;
 }
 
 
 
 void Attribute::HandleEvent(Event* event)
 {
-	// get attcked, if health reachs 0, remove obj
-	if (event->type == EventType::COLLISION)
-	{
-		//std::cout << "handle collision" << std::endl;
-		--health;
-	}
+	// check if get attched
+	getAttacked(event);
+	
+}
+
+
+void Attribute::print() const
+{
+	std::cout << "Health: " << health << std::endl;
+	std::cout << "Hostile: " << hostile << std::endl;
 }

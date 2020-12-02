@@ -27,6 +27,8 @@ public:
 	
 	virtual void update() = 0;
 
+	virtual void print() const = 0;
+
 	virtual void Serialize(std::ifstream& InputStream) = 0;
 
 	// component should be able to handle event

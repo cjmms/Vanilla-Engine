@@ -16,6 +16,8 @@ public:
 	Controller();
 	~Controller();
 
+	virtual void print() const override {};
+
 	virtual void Serialize(std::ifstream& stream) override;
 	
 	virtual void update(void) override;

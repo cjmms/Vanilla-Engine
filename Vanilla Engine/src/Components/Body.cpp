@@ -18,6 +18,11 @@ Body::~Body()
 void Body::update(void)
 {}
 
+void Body::print() const
+{
+
+}
+
 
 /*
 * Expected Input:
@@ -71,11 +76,6 @@ void Body::Serialize(std::ifstream& InputStream)
 		shape = new ShapeAABB(left, right, top, bottom);
 		shape->ownerBody = this;
 	}
-
-	//std::string h;
-	//InputStream >> h;
-	//if (h == "health") InputStream >> health;
-
 	
 }
 

@@ -15,6 +15,8 @@ public:
 
 	void draw(const Shader& shader);
 
+	virtual void print() const override {};
+
 	unsigned int TexID;
 	
 

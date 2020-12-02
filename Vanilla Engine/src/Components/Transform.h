@@ -18,6 +18,8 @@ public:
 
 	virtual void Serialize(std::ifstream& stream) override;
 
+	virtual void print() const override;
+
 	glm::vec3 position;
 
 };
