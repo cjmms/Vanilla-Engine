@@ -29,5 +29,7 @@ uniform sampler2D diffuse;
 out vec4 FragColor;
 void main()
 {
-	FragColor = vec4(texture(diffuse, TexCoord).rgb, 1.0f);
+	FragColor = texture(diffuse, TexCoord);
+	if (FragColor.a < 0.1) discard;
+	//FragColor = vec4(texture(diffuse, TexCoord).rgb, 1.0f);
 }

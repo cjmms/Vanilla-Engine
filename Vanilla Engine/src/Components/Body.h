@@ -26,6 +26,10 @@ public:
 	// seperate from update()
 	void Integrate(float Gravity, float DeltaTime, glm::vec3& pos);
 
+	virtual void HandleEvent(Event* event) override;
+
+	bool dead(void);
+
 public:
 	glm::vec2 mPos;
 	glm::vec2 mPrevPos;
@@ -35,6 +39,9 @@ public:
 	float mMass, mInvMass;
 
 	Shape* shape;
+
+	unsigned int health;
+		
 
 
 };

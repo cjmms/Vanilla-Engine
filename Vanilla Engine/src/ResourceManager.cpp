@@ -28,6 +28,7 @@ void ResourceManager::createTexture(unsigned int &id, const char* filePath)
             dataFormat = GL_RGBA;
         }
 
+        stbi_set_flip_vertically_on_load(true);
         glBindTexture(GL_TEXTURE_2D, id);
         glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, dataFormat, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);

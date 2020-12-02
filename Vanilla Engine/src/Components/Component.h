@@ -34,6 +34,8 @@ public:
 
 	inline ComponentType getType() { return type; };
 	GameObject* owner;
+
+	
 	
 
 private:

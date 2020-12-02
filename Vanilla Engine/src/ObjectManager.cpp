@@ -17,6 +17,15 @@ void ObjectManager::add(GameObject *object)
 	if (object != nullptr) GameObjects.push_back(object);
 }
 
+void ObjectManager::remove(GameObject* object)
+{
+	if (object != nullptr) // remove by value
+	{
+		delete object;
+		GameObjects.erase(std::remove(GameObjects.begin(), GameObjects.end(), object), GameObjects.end());
+	}
+}
+
 
 ObjectManager& ObjectManager::getInstance(void)
 {
@@ -28,6 +37,9 @@ ObjectManager& ObjectManager::getInstance(void)
 void ObjectManager::update( void )
 {
 	for (GameObject* obj : GameObjects) obj->update();
+
+	// check if the obj is dead
+	for (GameObject* obj : GameObjects) if (obj->body->dead()) remove(obj);
 }
 
 

@@ -73,5 +73,7 @@ void EventManager::BroadcastEventToSubs(Event* event)
 {
 	std::vector<GameObject*>& listOfSubs = subs[event->type];
 
-	for (auto p : listOfSubs) p->HandleEvent(event);
+	for (auto p : listOfSubs) if (p != nullptr) p->HandleEvent(event);
+
+	subs.erase(event->type);
 }

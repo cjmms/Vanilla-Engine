@@ -48,8 +48,11 @@ void Controller::HandleEvent(Event* event)
         CollideEvent* collideEvent = static_cast<CollideEvent*>(event);
         //std::cout << "fewfewfewfw" << std::endl;
 
+        
+
         Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
         transform->position.x -= 1.0f;
+
 
         //PlayerHitEvent e;
         //EventManager::getInstance().BroadcastEvent(&e);

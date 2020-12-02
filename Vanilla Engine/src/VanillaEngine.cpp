@@ -74,7 +74,7 @@ void VanillaEngine::update(void)
         glm::mat4 lookat = glm::lookAt(glm::vec3(0.0, 0.0, 6.0), glm::vec3(0.0), glm::vec3(0.0, 1.0, 0.0));
 
         //if (InputManager::getInstance().keyIsPressed(GLFW_KEY_W))
-
+        
         shader.setMat4("Projection", pers);
         shader.setMat4("View", lookat);
 
