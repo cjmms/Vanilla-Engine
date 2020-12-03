@@ -159,6 +159,7 @@ void ResourceManager::LoadLevel(const char* fileName)
         {
             std::string address = "res/Data/" + objName + ".txt";
             GameObject* obj = ResourceManager::getInstance().LoadGameObject(address.c_str());
+            if (obj != nullptr) obj->transform->Serialize(inputStream);
         }
 
         inputStream.close();

@@ -50,8 +50,8 @@ void Controller::HandleEvent(Event* event)
 
         
 
-        Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
-        transform->position.x -= 1.0f;
+        //Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
+        //transform->position.x -= 1.0f;
 
 
         //PlayerHitEvent e;

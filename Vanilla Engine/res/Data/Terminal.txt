@@ -1,0 +1,20 @@
+Transform
+0.0 0.0 0.0
+
+Sprite
+bonfire.png
+
+UpDown
+1 500
+
+Body
+Circle
+0.3
+Velocity
+0.0
+
+Attribute
+health
+10
+hostile
+0
