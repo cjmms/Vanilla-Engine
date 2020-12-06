@@ -40,6 +40,9 @@ void InputManager::init(void)		// real instructor
     keyboardEventMap[GLFW_KEY_A] = false;
     keyboardEventMap[GLFW_KEY_D] = false;
 
+    // fix obj location, remove controller
+    keyboardEventMap[GLFW_KEY_K] = false;
+
 }
 
 void InputManager::close(void)

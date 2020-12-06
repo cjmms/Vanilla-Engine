@@ -74,6 +74,17 @@ Component* GameObject::GetComponent(ComponentType type)
 
 
 
+void GameObject::RemoveComponent(ComponentType type)
+{
+	for (auto it = componentList.begin(); it != componentList.end();)
+	{
+		if (type == (*it)->getType())  it = componentList.erase(it);
+		else ++it;
+	}
+}
+
+
+
 void GameObject::HandleEvent(Event* event)
 {
 	for (auto component : componentList) component->HandleEvent(event);
