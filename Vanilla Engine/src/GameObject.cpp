@@ -49,6 +49,10 @@ Component* GameObject::AddComponent(ComponentType type)
 		component = new Attribute();
 		this->attribute = static_cast<Attribute*>(component);
 		break;
+	case ATTACK:
+		component = new Attack();
+		this->attack = static_cast<Attack*>(component);
+		break;
 	default:
 		return nullptr;
 	}

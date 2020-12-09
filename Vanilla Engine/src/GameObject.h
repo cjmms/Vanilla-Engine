@@ -5,6 +5,7 @@
 #include "./Components/UpDown.h"
 #include "./Components/Body.h"
 #include "./Components/Attribute.h"
+#include "./Components/Attack.h"
 #include <vector>
 
 
@@ -33,5 +34,6 @@ public:
 	UpDown* upDown;
 	Body* body;
 	Attribute* attribute;
+	Attack* attack;
 };
 

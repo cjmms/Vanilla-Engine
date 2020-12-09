@@ -15,6 +15,7 @@ enum ComponentType
 	CONTROLLER,
 	UP_DOWN,
 	BODY,
+	ATTACK,
 	ATTRIBUTE
 };
 

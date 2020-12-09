@@ -133,6 +133,7 @@ GameObject* ResourceManager::LoadGameObject(const char* fileName)
             if (componentName == "UpDown")      component = obj->AddComponent(UP_DOWN);
             if (componentName == "Body")        component = obj->AddComponent(BODY);
             if (componentName == "Attribute")   component = obj->AddComponent(ATTRIBUTE);
+            if (componentName == "Attack")      component = obj->AddComponent(ATTACK);
             
             // Serializing each component
             if (component != nullptr)           component->Serialize(inputStream);
