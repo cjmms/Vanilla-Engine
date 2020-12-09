@@ -6,6 +6,12 @@ CollideEvent::CollideEvent()
 	:Event(COLLISION)
 {}
 
+CollideEvent::CollideEvent(GameObject* a, GameObject* b)
+	: Event(COLLISION)
+{
+	isHostile = a->attribute->hostile != b->attribute->hostile;
+}
+
 CollideEvent::CollideEvent(float time)
 	: Event(COLLISION, time * 1000.0f)
 {}
@@ -83,11 +89,11 @@ void PhysicsManager::Integrate(float frameTime) const
 */
 void PhysicsManager::SendCollisionEvents(GameObject* obj1, GameObject* obj2) const
 {
-	CollideEvent* event1 = new CollideEvent();
+	CollideEvent* event1 = new CollideEvent(obj1, obj2);
 	EventManager::getInstance().AddEvent(event1);
 	EventManager::getInstance().Subscribe(COLLISION, obj1);
 
-	CollideEvent* event2 = new CollideEvent();
+	CollideEvent* event2 = new CollideEvent(obj1, obj2);
 	EventManager::getInstance().AddEvent(event2);
 	EventManager::getInstance().Subscribe(COLLISION, obj2);
 }

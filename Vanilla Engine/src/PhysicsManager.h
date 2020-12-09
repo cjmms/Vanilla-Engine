@@ -10,9 +10,10 @@ class CollideEvent : public Event
 public:
 	CollideEvent();
 	CollideEvent(float time);
+	CollideEvent(GameObject* a, GameObject* b);
 	~CollideEvent();
 
-	
+	bool isHostile;
 };
 
 

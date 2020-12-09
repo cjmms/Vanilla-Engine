@@ -1,6 +1,7 @@
 #include "Attribute.h"
 #include "../GameObject.h"
 #include "../CollisionManager.h"
+#include "../PhysicsManager.h"
 #include "../ObjectManager.h"
 
 Attribute::Attribute()
@@ -39,7 +40,12 @@ void Attribute::Serialize(std::ifstream& InputStream)
 
 void Attribute::getAttacked(Event * event)
 {
-	if (event->type == EventType::COLLISION)  --health;
+	if (event->type == EventType::COLLISION) {
+		CollideEvent* collide = dynamic_cast<CollideEvent*>(event);
+
+		if (collide->isHostile)
+			--health;
+	}
 }
 
 
