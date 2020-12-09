@@ -1,0 +1,19 @@
+Transform
+-2.0 1.3 0.0
+
+Sprite
+b.png
+
+
+
+Body
+Circle
+0.1
+Velocity
+0.00
+
+Attribute
+health
+1
+hostile
+0
