@@ -13,6 +13,8 @@ public:
 	static ObjectManager& getInstance(void);
 	void update( void );
 	void remove(GameObject* object);
+	bool find(GameObject* object) const;
+	GameObject* findEnemy(bool isHostile);
 
 	void render( Shader& shader ) const;
 

@@ -11,6 +11,21 @@ ObjectManager::~ObjectManager()
 }
 
 
+GameObject* ObjectManager::findEnemy(bool isHostile)
+{
+	for (auto obj : GameObjects)
+	{
+		Attribute* attribute = static_cast<Attribute*>(obj->GetComponent(ATTRIBUTE));
+		if (attribute->hostile == isHostile) return obj;
+	}
+	return nullptr;
+}
+
+bool ObjectManager::find(GameObject *object) const
+{
+	return std::find(GameObjects.begin(), GameObjects.end(), object) != GameObjects.end();
+}
+
 
 void ObjectManager::add(GameObject *object)
 {

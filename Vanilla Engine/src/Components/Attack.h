@@ -28,5 +28,8 @@ private:
 	bool searchTarget();
 	void attack();
 	bool hasTarget();
+
+	float timer;
+	float coolDown;
 };
 
