@@ -4,7 +4,7 @@
 #include "../ObjectManager.h"
 
 Body::Body()
-	: mPos(glm::vec2(0.0f)), mPrevPos(glm::vec2(0.0f)), velocity(0.0f),
+	: mPos(glm::vec2(0.0f)), mPrevPos(glm::vec2(0.0f)), velocity(glm::vec2(0.0f)),
 	  acc(glm::vec2(0.0f)), totalF(glm::vec2(0.0f)), mMass(1.0f), mInvMass(1.0f), 
 	  Component(BODY), shape(nullptr)
 {}
@@ -23,6 +23,10 @@ void Body::print() const
 
 }
 
+void Body::setVelocity(glm::vec2 v)
+{
+	velocity = speed * glm::normalize(v);
+}
 
 /*
 * Expected Input:
@@ -81,10 +85,10 @@ void Body::Serialize(std::ifstream& InputStream)
 	InputStream >> v;
 	if (v == "Velocity")
 	{
-		InputStream >> velocity;
-		std::cout << "Velocity: " << velocity  << std::endl;
+		//float speed;
+		InputStream >> speed;
+		std::cout << "Speed: " << speed << std::endl;
 	}
-	
 }
 
 
@@ -94,10 +98,16 @@ void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 	mPos = transform->position;
 
 	// direction of enemy
-	// glm::vec2(0.0) is target position, terminal coordinates
-	glm::vec2 v = velocity *  glm::normalize( glm::vec2(0.0) - mPos );
+	 //glm::vec2(0.0) is target position, terminal coordinates
+	if (owner->attribute->hostile)
+		velocity = speed * glm::normalize(glm::vec2(0.0) - mPos);
+	//else
+		//velocity = speed * glm::normalize(velocity);
 
-	if (velocity != 0) owner->transform->move(v);
+	//if (owner->attribute->hostile) transform->move(velocity);
+	//else transform->move(velocity * speed);
+
+	transform->move(velocity);
 
 /*
 	mPrevPos = mPos;

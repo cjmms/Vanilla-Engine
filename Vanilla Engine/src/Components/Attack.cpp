@@ -1,6 +1,7 @@
 #include "Attack.h"
 #include "../FPSController.h"
 #include "../GameObject.h"
+#include "../ResourceManager.h"
 #include "../ObjectManager.h"
 
 
@@ -30,9 +31,10 @@ void Attack::Serialize(std::ifstream& InputStream)
 {
 	std::cout << "Serializing Attack" << std::endl;
 
-	InputStream >> coolDown;
+	InputStream >> coolDown ;
+	coolDown *= 1000;
 
-	std::cout << "Timer limit: " << timer << std::endl;
+	std::cout << "coolDown limit: " << coolDown << std::endl;
 }
 
 
@@ -52,6 +54,10 @@ void Attack::attack()
 	{
 		timer = coolDown;
 		// attack
+		std::cout << "attack!!!" << std::endl;
+		GameObject* bullet = ResourceManager::getInstance().LoadGameObject("res/Data/Bullet.txt");
+		bullet->transform->position = owner->transform->position;	// set bullet initial position
+		bullet->body->setVelocity(glm::vec2(0.0) - glm::vec2(bullet->transform->position));
 	}
 }
 

@@ -22,6 +22,8 @@ public:
 
 	virtual void print() const override;
 
+	
+
 	glm::vec3 position;
 
 };

@@ -30,14 +30,17 @@ public:
 
 	virtual void print() const override;
 
+	void setVelocity(glm::vec2 v);
+
 
 public:
 	glm::vec2 mPos;
 	glm::vec2 mPrevPos;
-	float velocity;
+	glm::vec2 velocity;
 	glm::vec2 acc;
 	glm::vec2 totalF;
 	float mMass, mInvMass;
+	float speed;
 
 	Shape* shape;
 

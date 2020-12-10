@@ -54,7 +54,8 @@ void ObjectManager::update( void )
 	for (GameObject* obj : GameObjects) obj->update();
 
 	// check if the obj is dead
-	for (GameObject* obj : GameObjects) if (obj->attribute->dead()) remove(obj);
+	for (GameObject* obj : GameObjects) 
+		if (obj->attribute == nullptr || obj->attribute->dead()) remove(obj);
 }
 
 
