@@ -4,7 +4,11 @@ Transform
 Sprite
 grass.png
 
-
+Attribute
+health
+1
+hostile
+1
 
 Body
 Circle
@@ -12,8 +16,3 @@ Circle
 Velocity
 0.01
 
-Attribute
-health
-1
-hostile
-1

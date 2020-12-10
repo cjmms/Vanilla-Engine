@@ -12,6 +12,7 @@ public:
 	void add(GameObject *object);
 	static ObjectManager& getInstance(void);
 	void update( void );
+	void deleteObj();
 	void remove(GameObject* object);
 	bool find(GameObject* object) const;
 	GameObject* findEnemy(bool isHostile);

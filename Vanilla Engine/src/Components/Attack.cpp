@@ -54,7 +54,6 @@ void Attack::attack()
 	{
 		timer = coolDown;
 		// attack
-		std::cout << "attack!!!" << std::endl;
 		GameObject* bullet = ResourceManager::getInstance().LoadGameObject("res/Data/Bullet.txt");
 		bullet->transform->position = owner->transform->position;	// set bullet initial position
 		bullet->body->setVelocity(glm::vec2(0.0) - glm::vec2(bullet->transform->position));

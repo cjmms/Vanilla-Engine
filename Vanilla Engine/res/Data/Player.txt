@@ -6,16 +6,17 @@ wood.jpg
 
 Controller
 
-Body
-Circle
-0.3
-Velocity
-0.0
-
 Attribute
 health
 3
 hostile
 0
 
+Body
+Circle
+0.3
+Velocity
+0.0
+
 Attack
+1.5
