@@ -19,12 +19,15 @@ public:
 	void move(glm::vec2 dis);
 
 	virtual void Serialize(std::ifstream& stream) override;
+	void SerializePosition(std::ifstream& InputStream);
+	void SerializeScale(std::ifstream& InputStream);
 
 	virtual void print() const override;
 
 	
 
 	glm::vec3 position;
+	glm::vec3 scale;
 
 };
 

@@ -24,7 +24,7 @@ void VanillaEngine::initUI(void)
     if (!glfwInit()) std::cout << "GLFW init error" << std::endl;
 
     // Create a windowed mode window and its OpenGL context
-    window = glfwCreateWindow(1200, 1000, "Vanilla", NULL, NULL);
+    window = glfwCreateWindow(1200, 1000, "Cyberpunk 3077", NULL, NULL);
     if (!window)
     {
         glfwTerminate();

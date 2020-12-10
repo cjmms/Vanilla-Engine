@@ -1,7 +1,10 @@
 #include "Transform.h"
 #include <fstream>
+#include "Component.h"
+#include "../GameObject.h"
+#include "Attribute.h"
 
-Transform::Transform() : Component(TRANSFORM), position(glm::vec3(0.0f))
+Transform::Transform() : Component(TRANSFORM), position(glm::vec3(0.0f)), scale(glm::vec3(1.0f))
 {}
 
 
@@ -45,15 +48,39 @@ void Transform::move(glm::vec2 dis)
 void Transform::Serialize(std::ifstream& InputStream)
 {
     std::cout << "Serializing Transform" << std::endl;
-    InputStream >> position.x;
-    InputStream >> position.y;
-    InputStream >> position.z;
+
+    // serialize scale from object file
+    SerializeScale(InputStream);
+    //SerializePosition(InputStream);
 
     print();
 }
 
 
+
+void Transform::SerializePosition(std::ifstream& InputStream)
+{
+    InputStream >> position.x;
+    InputStream >> position.y;
+    InputStream >> position.z;
+
+    
+    //if (owner->attribute->hostile) position = position / scale;
+    //print();
+}
+
+
+
+void Transform::SerializeScale(std::ifstream& InputStream)
+{
+    InputStream >> scale.x;
+    InputStream >> scale.y;
+    InputStream >> scale.z;
+}
+
+
 void Transform::print() const
 {
-    std::cout << "x: " << position.x << "  y: " << position.y << "  z: " << position.z << std::endl;
+    std::cout << "Position: x: " << position.x << "  y: " << position.y << "  z: " << position.z << std::endl;
+    std::cout << "Scale: x: " << scale.x << "  y: " << scale.y << "  z: " << scale.z << std::endl;
 }
