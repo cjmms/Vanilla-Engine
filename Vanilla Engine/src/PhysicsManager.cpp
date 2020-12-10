@@ -89,6 +89,11 @@ void PhysicsManager::Integrate(float frameTime) const
 */
 void PhysicsManager::SendCollisionEvents(GameObject* obj1, GameObject* obj2) const
 {
+	// if one of the object is not deploied, no collision event will be sent
+	//if (!obj1->attribute->deploied || !obj2->attribute->hostile) 
+		//return;
+	
+
 	CollideEvent* event1 = new CollideEvent(obj1, obj2);
 	EventManager::getInstance().AddEvent(event1);
 	EventManager::getInstance().Subscribe(COLLISION, obj1);

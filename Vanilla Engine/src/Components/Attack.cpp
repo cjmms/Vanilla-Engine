@@ -16,8 +16,11 @@ Attack::~Attack(){}
 
 void Attack::update()
 {
+	Attribute* attribute = static_cast<Attribute*>(owner->GetComponent(ATTRIBUTE));
 	if (!hasTarget()) searchTarget();
-	if (hasTarget()) attack();
+
+	if (attribute == nullptr) return;
+	if (hasTarget() && attribute->deploied) attack();
 }
 
 
@@ -56,7 +59,7 @@ void Attack::attack()
 		// attack
 		GameObject* bullet = ResourceManager::getInstance().LoadGameObject("res/Data/Bullet.txt");
 		bullet->transform->position = owner->transform->position;	// set bullet initial position
-		bullet->body->setVelocity(glm::vec2(0.0) - glm::vec2(bullet->transform->position));
+		bullet->body->setVelocity(glm::vec2(target->transform->position) - glm::vec2(bullet->transform->position));
 	}
 }
 

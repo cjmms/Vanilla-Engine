@@ -25,15 +25,33 @@ Controller::Controller() : Component(CONTROLLER)
 Controller::~Controller()
 {}
 
+void Controller::deploy()
+{
+    Attribute* attribute = static_cast<Attribute*>(owner->GetComponent(ATTRIBUTE));
+
+    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_K)) {
+        owner->RemoveComponent(CONTROLLER);
+        if (attribute != nullptr) attribute->deploied = true;
+    }
+}
+
+void Controller::move()
+{
+    Transform* transform = static_cast<Transform*>(owner->GetComponent(TRANSFORM));
+    if (transform == nullptr) return;
+
+    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_W)) transform->moveUp();
+    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_A)) transform->moveLeft();
+    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_S)) transform->moveDown();
+    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_D)) transform->moveRight();
+
+}
+
 
 void Controller::update(void)
 {
-    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_W)) owner->transform->moveUp();
-    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_A)) owner->transform->moveLeft();
-    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_S)) owner->transform->moveDown();
-    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_D)) owner->transform->moveRight();
-
-    if (InputManager::getInstance().keyIsPressed(GLFW_KEY_K)) owner->RemoveComponent(CONTROLLER);
+    move();
+    deploy();
 }
 
 

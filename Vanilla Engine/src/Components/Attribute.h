@@ -25,6 +25,7 @@ public:
 
 	unsigned int health;
 	bool hostile;
+	bool deploied;
 	
 };
 

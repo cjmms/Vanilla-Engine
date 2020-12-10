@@ -24,5 +24,8 @@ public:
 
 	virtual void HandleEvent(Event* event) override;
 
+	void deploy();
+	void move();
+
 };
 

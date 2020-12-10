@@ -9,6 +9,8 @@ health
 1
 hostile
 1
+deploy
+1
 
 Body
 Circle

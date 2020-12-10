@@ -23,9 +23,9 @@ void Body::print() const
 
 }
 
-void Body::setVelocity(glm::vec2 v)
+void Body::setVelocity(glm::vec2 dir)
 {
-	velocity = speed * glm::normalize(v);
+	velocity = speed * glm::normalize(dir);
 }
 
 /*

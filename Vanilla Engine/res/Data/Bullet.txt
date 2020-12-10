@@ -10,9 +10,11 @@ health
 1
 hostile
 0
+deploy
+1
 
 Body
 Circle
 0.1
 Velocity
-0.2
+0.05
