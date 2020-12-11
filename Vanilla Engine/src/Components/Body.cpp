@@ -98,14 +98,9 @@ void Body::Integrate(float Gravity, float DeltaTime, glm::vec3& pos)
 	mPos = transform->position;
 
 	// direction of enemy
-	 //glm::vec2(0.0) is target position, terminal coordinates
 	if (owner->attribute->hostile)
 		velocity = speed * glm::normalize(glm::vec2(0.0) - mPos);
-	//else
-		//velocity = speed * glm::normalize(velocity);
 
-	//if (owner->attribute->hostile) transform->move(velocity);
-	//else transform->move(velocity * speed);
 
 	transform->move(velocity);
 

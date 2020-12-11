@@ -1,5 +1,6 @@
 #include "ObjectManager.h"
-
+#include "ResourceManager.h"
+#include "InputManager.h"
 
 ObjectManager::ObjectManager()
 {}
@@ -52,6 +53,10 @@ ObjectManager& ObjectManager::getInstance(void)
 void ObjectManager::update( void )
 {
 	for (GameObject* obj : GameObjects) obj->update();
+	if (InputManager::getInstance().keyIsPressed(GLFW_KEY_J)) {
+		GameObject* player = ResourceManager::getInstance().LoadGameObject("res/Data/player.txt");
+	
+	}
 }
 
 void ObjectManager::deleteObj()
