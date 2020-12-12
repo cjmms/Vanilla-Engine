@@ -1,5 +1,5 @@
 Transform
-0.3 0.3 0.3
+0.4 0.4 0.4
 
 Sprite
 bullet.png
@@ -15,6 +15,9 @@ deploy
 
 Body
 Circle
-0.1
+1.6
 Velocity
-0.10
+0.15
+
+
+

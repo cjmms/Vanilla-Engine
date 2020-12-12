@@ -4,8 +4,6 @@ Transform
 Sprite
 bonfire.png
 
-UpDown
-1 500
 
 Attribute
 health

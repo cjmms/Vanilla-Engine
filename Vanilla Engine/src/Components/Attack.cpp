@@ -59,13 +59,8 @@ void Attack::attack()
 		// attack
 		GameObject* bullet = ResourceManager::getInstance().LoadGameObject("res/Data/Bullet.txt");
 		bullet->transform->position = owner->transform->position / bullet->transform->scale;	// set bullet initial position
-		//bullet->transform->position = owner->transform->position;
-		//glm::vec3 a = bullet->transform->scale;
 		bullet->transform->print();
-
-		//bullet->RemoveComponent(BODY);
-		
-		
+	
 		bullet->body->setVelocity(glm::vec2(target->transform->position) - glm::vec2(bullet->transform->position));
 		std::cout << "Attack ends" << std::endl;
 	}

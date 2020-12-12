@@ -21,4 +21,4 @@ Velocity
 0.0
 
 Attack
-0.5
+0.2

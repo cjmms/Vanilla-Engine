@@ -121,9 +121,9 @@ void PhysicsManager::CollisionDetection(void) const
 		for (auto pGameObj2 = pGameObj1 + 1; pGameObj2 != ObjectManager::getInstance().GameObjects.end(); ++pGameObj2)
 		{
 			Body* body2 = static_cast<Body*>((*pGameObj2)->GetComponent(BODY));
-			Transform* t2 = static_cast<Transform*>((*pGameObj1)->GetComponent(TRANSFORM));
+			Transform* t2 = static_cast<Transform*>((*pGameObj2)->GetComponent(TRANSFORM));
 
-			if (CollisionManager::getInstance().CheckCollision(body1->shape, body1->mPos, body2->shape, body2->mPos))
+			if (CollisionManager::getInstance().CheckCollision(body1->shape, t1->position / t1->scale, body2->shape, t2->position / t2->scale))
 				SendCollisionEvents(body1->owner, body2->owner);
 		}
 	}
