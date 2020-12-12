@@ -10,7 +10,7 @@ void VanillaEngine::init(void)
 
     InputManager::getInstance().init();
     ResourceManager::getInstance().init();
-    ObjectManager::getInstance().close();
+    //ObjectManager::getInstance().init();
     EventManager::getInstance().init();
     PhysicsManager::getInstance().init();
 
@@ -65,6 +65,7 @@ void VanillaEngine::close(void)
 
 void VanillaEngine::update(void)
 {
+    bool play = false;
     // game loop
     while (!glfwWindowShouldClose(window))
     {
@@ -73,31 +74,41 @@ void VanillaEngine::update(void)
 
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        
+
         Shader shader("src/demo.shader");
         shader.Bind();
 
         glm::mat4 pers = glm::perspective(glm::radians(45.0f), 1200 / 1000.0f, 0.1f, 100.0f);
         glm::mat4 lookat = glm::lookAt(glm::vec3(0.0, 0.0, 6.0), glm::vec3(0.0), glm::vec3(0.0, 1.0, 0.0));
 
-        
+
         shader.setMat4("Projection", pers);
         shader.setMat4("View", lookat);
-        
-
-        ObjectManager::getInstance().update();
-        PhysicsManager::getInstance().update();
-
-        EventManager::getInstance().update(FPSController::getInstance().getFrameTime());
-        ObjectManager::getInstance().deleteObj();
 
 
-        ObjectManager::getInstance().render(shader);
 
+        if (play)
+        {
+            ObjectManager::getInstance().update();
+            PhysicsManager::getInstance().update();
 
-        //textRenderer.RenderText("This is sample text", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));
-        //textRenderer.RenderText("(C) LearnOpenGL.com", 540.0f, 570.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
-    
+            EventManager::getInstance().update(FPSController::getInstance().getFrameTime());
+            ObjectManager::getInstance().deleteObj();
+
+            ObjectManager::getInstance().render(shader);
+
+            if (InputManager::getInstance().keyIsPressed(GLFW_KEY_N)) {
+                ObjectManager::getInstance().close();
+                ResourceManager::getInstance().LoadLevel("res/Data/Level.txt");
+            }
+        }
+        else
+        {   // Mune
+            textRenderer.RenderText("This is sample text", 25.0f, 25.0f, 1.0f, glm::vec3(0.5, 0.8f, 0.2f));
+            textRenderer.RenderText("(C) LearnOpenGL.com", 540.0f, 570.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
+            play = InputManager::getInstance().keyIsPressed(GLFW_KEY_N);
+        }
+
         glfwSwapBuffers(window);
     }
 }
