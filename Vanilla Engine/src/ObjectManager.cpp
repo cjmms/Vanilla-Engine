@@ -52,14 +52,11 @@ ObjectManager& ObjectManager::getInstance(void)
 
 
 void ObjectManager::update( void )
-{
-	int test = 0;
-	
+{	
 	std::vector<GameObject*>::size_type size = GameObjects.size();
 	for (std::vector<GameObject*>::size_type i = 0; i < size; ++i)
 		GameObjects[i]->update();
 	
-
 	if (InputManager::getInstance().keyIsPressed(GLFW_KEY_J)) createObj();
 }
 
@@ -67,9 +64,13 @@ void ObjectManager::update( void )
 
 void ObjectManager::createObj()
 {
-	
-	GameObject* player = ResourceManager::getInstance().LoadGameObject("res/Data/player.txt");
-	
+	std::vector<GameObject*>::size_type size = GameObjects.size();
+
+	// do not create new object if player is controlling one object already
+	for (std::vector<GameObject*>::size_type i = 0; i < size; ++i) 
+		if (nullptr != GameObjects[i]->GetComponent(CONTROLLER)) return;
+		
+	ResourceManager::getInstance().LoadGameObject("res/Data/player.txt");
 }
 
 
@@ -82,7 +83,6 @@ void ObjectManager::deleteObj()
 		Attribute* attribute = static_cast<Attribute*>((*it)->GetComponent(ATTRIBUTE));
 		if (attribute != nullptr && attribute->dead()) {
 			delete (*it);
-			//std::cout << "deleting!!!!!" << std::endl;
 			it = GameObjects.erase(it);
 		}
 		else ++it;

@@ -19,7 +19,7 @@ public:
 
 	Component* AddComponent(ComponentType type);
 	Component* GetComponent(ComponentType type);
-	void RemoveComponent(ComponentType type);
+	bool RemoveComponent(ComponentType type);
 	void HandleEvent(Event* event);
 
 	virtual void Serialize(std::ifstream& InputStream) {};

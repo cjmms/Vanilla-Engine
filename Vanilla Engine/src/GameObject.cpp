@@ -78,13 +78,18 @@ Component* GameObject::GetComponent(ComponentType type)
 
 
 
-void GameObject::RemoveComponent(ComponentType type)
+bool GameObject::RemoveComponent(ComponentType type)
 {
 	for (auto it = componentList.begin(); it != componentList.end();)
 	{
-		if (type == (*it)->getType())  it = componentList.erase(it);
+		if (type == (*it)->getType())
+		{
+			it = componentList.erase(it);
+			return true;	// remove sucessfully
+		}
 		else ++it;
 	}
+	return false;
 }
 
 
