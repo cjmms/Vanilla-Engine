@@ -29,10 +29,13 @@ private:
     unsigned int SCR_WIDTH;
     unsigned int SCR_HEIGHT;
 
+    Shader* shader;
+
 
 public:
-	void RenderText(Shader& shader, std::string text, float x, float y, float scale, glm::vec3 color);
-    void init(unsigned int width, unsigned int height);
-    void loadText(Shader& shader, std::string fontAddress);
+	void RenderText(std::string text, float x, float y, float scale, glm::vec3 color);
+    void init(unsigned int width, unsigned int height, std::string shaderAdd);
+    void loadFont(std::string fontAddress);
+    void close(void);
 };
 

@@ -1,11 +1,11 @@
 #include "TextRenderer.h"
 
 
-void TextRenderer::RenderText(Shader& shader, std::string text, float x, float y, float scale, glm::vec3 color)
+void TextRenderer::RenderText(std::string text, float x, float y, float scale, glm::vec3 color)
 {
     // activate corresponding render state	
-    shader.Bind();
-    shader.setVec3("textColor", color);
+    shader->Bind();
+    shader->setVec3("textColor", color);
     glActiveTexture(GL_TEXTURE0);
     glBindVertexArray(VAO);
 
@@ -44,10 +44,11 @@ void TextRenderer::RenderText(Shader& shader, std::string text, float x, float y
     }
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
+    shader->unBind();
 }
 
 
-void TextRenderer::loadText(Shader& shader, std::string fontAddress)
+void TextRenderer::loadFont(std::string fontAddress)
 {
     glEnable(GL_CULL_FACE);
     glEnable(GL_BLEND);
@@ -56,8 +57,8 @@ void TextRenderer::loadText(Shader& shader, std::string fontAddress)
     // compile and setup the shader
     // ----------------------------
     glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(SCR_WIDTH), 0.0f, static_cast<float>(SCR_HEIGHT));
-    shader.Bind();
-    shader.setMat4("projection", projection);
+    shader->Bind();
+    shader->setMat4("projection", projection);
 
     // FreeType
     // --------
@@ -138,11 +139,20 @@ void TextRenderer::loadText(Shader& shader, std::string fontAddress)
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+    shader->unBind();
 }
 
 
-void TextRenderer::init(unsigned int width, unsigned int height)
+void TextRenderer::init(unsigned int width, unsigned int height, std::string shaderAdd)
 {
     SCR_WIDTH = width;
     SCR_HEIGHT = height;
+
+    shader = new Shader(shaderAdd);
+}
+
+
+void TextRenderer::close()
+{
+    delete shader;
 }
