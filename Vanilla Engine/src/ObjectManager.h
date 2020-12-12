@@ -22,7 +22,10 @@ public:
 	void close( void );
 
 
+
 	std::vector<GameObject *> GameObjects;
+private:
+	void createObj();
 
 };
 
