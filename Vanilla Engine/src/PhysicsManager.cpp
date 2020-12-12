@@ -89,10 +89,9 @@ void PhysicsManager::Integrate(float frameTime) const
 */
 void PhysicsManager::SendCollisionEvents(GameObject* obj1, GameObject* obj2) const
 {
-	// if one of the object is not deploied, no collision event will be sent
-	//if (!obj1->attribute->deploied || !obj2->attribute->hostile) 
-		//return;
-	
+	std::cout << "Sending collision event!!!!" << std::endl;
+	std::cout << "obj1 health: " << obj1->attribute->health << std::endl;
+	std::cout << "obj2 health: " << obj2->attribute->health << std::endl;
 
 	CollideEvent* event1 = new CollideEvent(obj1, obj2);
 	EventManager::getInstance().AddEvent(event1);
@@ -117,10 +116,12 @@ void PhysicsManager::CollisionDetection(void) const
 	for (auto pGameObj1 = ObjectManager::getInstance().GameObjects.begin(); pGameObj1 != ObjectManager::getInstance().GameObjects.end(); ++pGameObj1)
 	{
 		Body* body1 = static_cast<Body*>((*pGameObj1)->GetComponent(BODY));
+		Transform* t1 = static_cast<Transform*>((*pGameObj1)->GetComponent(TRANSFORM));
 
 		for (auto pGameObj2 = pGameObj1 + 1; pGameObj2 != ObjectManager::getInstance().GameObjects.end(); ++pGameObj2)
 		{
 			Body* body2 = static_cast<Body*>((*pGameObj2)->GetComponent(BODY));
+			Transform* t2 = static_cast<Transform*>((*pGameObj1)->GetComponent(TRANSFORM));
 
 			if (CollisionManager::getInstance().CheckCollision(body1->shape, body1->mPos, body2->shape, body2->mPos))
 				SendCollisionEvents(body1->owner, body2->owner);

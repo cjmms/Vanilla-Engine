@@ -63,7 +63,8 @@ void Transform::SerializePosition(std::ifstream& InputStream)
     InputStream >> position.x;
     InputStream >> position.y;
     InputStream >> position.z;
-
+    
+   // owner->body->mPos = glm::vec2(position.x / scale.x, position.y / scale.y);
     
     //if (owner->attribute->hostile) position = position / scale;
     //print();

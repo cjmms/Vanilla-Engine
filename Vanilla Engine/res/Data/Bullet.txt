@@ -17,4 +17,4 @@ Body
 Circle
 0.1
 Velocity
-0.05
+0.10

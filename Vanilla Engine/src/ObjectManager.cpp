@@ -38,8 +38,8 @@ void ObjectManager::remove(GameObject* object)
 {
 	if (object != nullptr) // remove by value
 	{
-		delete object;
 		GameObjects.erase(std::remove(GameObjects.begin(), GameObjects.end(), object), GameObjects.end());	
+		delete object;
 	}
 }
 
@@ -53,7 +53,19 @@ ObjectManager& ObjectManager::getInstance(void)
 
 void ObjectManager::update( void )
 {
-	for (GameObject* obj : GameObjects) obj->update();
+	int test = 0;
+	
+	std::vector<GameObject*>::size_type size = GameObjects.size();
+	for (std::vector<GameObject*>::size_type i = 0; i < size; ++i)
+	{
+		GameObjects[i]->update();
+	}
+	/*
+	for (GameObject* obj : GameObjects) {
+		obj->update();
+		test++;
+		std::cout << "obj: " << test << std::endl;
+	}*/
 	if (InputManager::getInstance().keyIsPressed(GLFW_KEY_J)) createObj();
 }
 
@@ -71,11 +83,35 @@ void ObjectManager::createObj()
 void ObjectManager::deleteObj()
 {
 	// check if the obj is dead
+	/*
+	std::vector<GameObject*>::size_type size = GameObjects.size();
+	for (std::vector<GameObject*>::size_type i = 0; i < size; ++i)
+	{
+		Attribute* attribute = static_cast<Attribute*>(GameObjects[i]->GetComponent(ATTRIBUTE));
+		if (attribute != nullptr && attribute->dead()) {
+			//remove(GameObjects[i]);
+			
+		}
+	}*/
+
+	std::vector< GameObject* >::iterator it = GameObjects.begin();
+
+	while (it != GameObjects.end()) {
+		Attribute* attribute = static_cast<Attribute*>((*it)->GetComponent(ATTRIBUTE));
+		if (attribute != nullptr && attribute->dead()) {
+			delete (*it);
+			std::cout << "deleting!!!!!" << std::endl;
+			it = GameObjects.erase(it);
+		}
+		else ++it;
+	}
+
+	/*
 	for (GameObject* obj : GameObjects) {
 		Attribute* attribute = static_cast<Attribute*>(obj->GetComponent(ATTRIBUTE));
 		if (attribute != nullptr && attribute->dead()) remove(obj);
 		
-	}
+	}*/
 }
 
 
