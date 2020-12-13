@@ -119,7 +119,9 @@ void VanillaEngine::update(void)
         {   // Mune
             glDisable(GL_BLEND);
 
-            std::string healthUI(ObjectManager::getInstance().FindTerminalHealth(), 'x');
+            int length = ObjectManager::getInstance().FindTerminalHealth();
+            //std::cout << "length: " <<  length << std::endl;
+            std::string healthUI(length, 'x');
 
             textRenderer.RenderText(healthUI, 100.0f, 700.0f, 1.0f, glm::vec3(0.7, 0.7f, 0.0f));
             ObjectManager::getInstance().update();

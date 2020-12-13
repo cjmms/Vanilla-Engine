@@ -89,17 +89,15 @@ void PhysicsManager::Integrate(float frameTime) const
 */
 void PhysicsManager::SendCollisionEvents(GameObject* obj1, GameObject* obj2) const
 {
-	std::cout << "Sending collision event!!!!" << std::endl;
-	std::cout << "obj1 health: " << obj1->attribute->health << std::endl;
-	std::cout << "obj2 health: " << obj2->attribute->health << std::endl;
+	//std::cout << "Sending collision event!!!!" << std::endl;
+	//std::cout << "obj1 health: " << obj1->attribute->health << std::endl;
+	//std::cout << "obj2 health: " << obj2->attribute->health << std::endl;
 
 	CollideEvent* event1 = new CollideEvent(obj1, obj2);
-	EventManager::getInstance().AddEvent(event1);
-	EventManager::getInstance().Subscribe(COLLISION, obj1);
+	EventManager::getInstance().Subscribe(event1, obj1);
 
 	CollideEvent* event2 = new CollideEvent(obj1, obj2);
-	EventManager::getInstance().AddEvent(event2);
-	EventManager::getInstance().Subscribe(COLLISION, obj2);
+	EventManager::getInstance().Subscribe(event2, obj2);
 }
 
 

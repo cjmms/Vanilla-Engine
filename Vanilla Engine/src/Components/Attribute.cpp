@@ -44,10 +44,13 @@ void Attribute::Serialize(std::ifstream& InputStream)
 void Attribute::getAttacked(Event * event)
 {
 	if (event->type == EventType::COLLISION) {
+		//std::cout << "get attacked!!!!!" << std::endl;
 		CollideEvent* collide = dynamic_cast<CollideEvent*>(event);
 		
-		if (collide->isHostile)
+		if (collide->isHostile) {
+			//std::cout << "get attacked" << std::endl;
 			--health;
+		}
 	}
 }
 

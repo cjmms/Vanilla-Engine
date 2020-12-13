@@ -62,7 +62,7 @@ void Attack::attack()
 		bullet->transform->print();
 	
 		bullet->body->setVelocity(glm::vec2(target->transform->position) - glm::vec2(bullet->transform->position));
-		std::cout << "Attack ends" << std::endl;
+		//std::cout << "Attack ends" << std::endl;
 	}
 }
 

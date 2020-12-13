@@ -23,18 +23,15 @@ void EventManager::init(void)
 // iterate all the events inside event list and trigger them base on time
 void EventManager::update(float frameTime)
 {
-	for (auto i = events.begin(); i != events.end();) {
-		Event* e = *i;
-		e->timer -= frameTime;		// decrease time for each event
+	for (auto i = subs.begin(); i != subs.end();) {
+		std::pair<Event*, GameObject*> p = *i;
 
-		if (e->timer <= 0.0f)		// trigger the event when timer reachs 0
-		{
-			//BroadcastEvent(e);
-			BroadcastEventToSubs(e);
-			delete e;
-			i = events.erase(i);
-		}
-		else ++i;
+		Event* e = p.first;
+		GameObject* obj = p.second;
+
+		if (obj != nullptr) obj->HandleEvent(e);
+		delete e;
+		i = subs.erase(i);
 	}
 }
 
@@ -54,26 +51,11 @@ EventManager& EventManager::getInstance(void)
 void EventManager::AddEvent(Event* event)
 {
 	events.push_back(event);
-
 }
 
 
 
-void EventManager::Subscribe(EventType type, GameObject* obj)
+void EventManager::Subscribe(Event* event, GameObject* obj)
 {
-	std::vector<GameObject*>& listOfSubs = subs[type];
-
-	for (auto p : listOfSubs)	// check if it's subscribed already
-		if (p == obj) return;
-	
-	listOfSubs.push_back(obj);
-}
-
-void EventManager::BroadcastEventToSubs(Event* event)
-{
-	std::vector<GameObject*>& listOfSubs = subs[event->type];
-
-	for (auto p : listOfSubs) if (p != nullptr) p->HandleEvent(event);
-
-	subs.erase(event->type);
+	subs.push_back(std::make_pair(event, obj));
 }

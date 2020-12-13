@@ -121,7 +121,6 @@ void CollisionManager::Reset()
 
 bool CollisionManager::CheckCollision(Shape* shape1, glm::vec2 pos1, Shape* shape2, glm::vec2 pos2)
 {
-	//std::cout<< "check collision" <<std::endl;
 	return CollisionFunctions[shape1->type][shape2->type](shape1, pos1, shape2, pos2);
 }
 

@@ -4,7 +4,8 @@ Enemy
 Terminal
 0.0 0.0 0.0
 
-
+Player
+1.6 0.6 0.0
 
 Enemy
 0.0 -2.0 0.0
