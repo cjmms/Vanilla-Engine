@@ -2,7 +2,7 @@ Transform
 1.0 1.0 1.0
 
 Sprite
-wood.jpg
+turret.png
 
 Controller
 
@@ -21,4 +21,4 @@ Velocity
 0.0
 
 Attack
-0.2
+0.4

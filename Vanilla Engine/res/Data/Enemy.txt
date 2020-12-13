@@ -2,7 +2,7 @@ Transform
 1.0 1.0 1.0
 
 Sprite
-grass.png
+ice.png
 
 Attribute
 health

@@ -18,6 +18,7 @@ int ObjectManager::FindTerminalHealth()
 	for (auto obj : GameObjects)
 	{
 		Attribute* attribute = static_cast<Attribute*>(obj->GetComponent(ATTRIBUTE));
+		if (attribute == nullptr) continue;
 		if (attribute->health > health) health = attribute->health;
 	}
 	return health;

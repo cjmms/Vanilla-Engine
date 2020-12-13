@@ -51,7 +51,6 @@ void Transform::Serialize(std::ifstream& InputStream)
 
     // serialize scale from object file
     SerializeScale(InputStream);
-    //SerializePosition(InputStream);
 
     print();
 }
