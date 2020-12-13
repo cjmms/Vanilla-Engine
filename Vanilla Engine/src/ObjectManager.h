@@ -21,6 +21,9 @@ public:
 
 	void close( void );
 
+	int FindTerminalHealth();
+	
+
 
 
 	std::vector<GameObject *> GameObjects;

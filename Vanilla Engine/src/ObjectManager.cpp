@@ -12,6 +12,17 @@ ObjectManager::~ObjectManager()
 {
 }
 
+int ObjectManager::FindTerminalHealth()
+{
+	int health = 0;
+	for (auto obj : GameObjects)
+	{
+		Attribute* attribute = static_cast<Attribute*>(obj->GetComponent(ATTRIBUTE));
+		if (attribute->health > health) health = attribute->health;
+	}
+	return health;
+}
+
 
 GameObject* ObjectManager::findEnemy(bool isHostile)
 {

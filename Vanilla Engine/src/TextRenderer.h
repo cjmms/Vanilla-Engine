@@ -37,5 +37,6 @@ public:
     void init(unsigned int width, unsigned int height, std::string shaderAdd);
     void loadFont(std::string fontAddress);
     void close(void);
+    void RenderUITexture(int length, float x, float y, std::string texAdd);
 };
 

@@ -109,7 +109,7 @@ void VanillaEngine::update(void)
         {
             if (InputManager::getInstance().keyIsPressed(GLFW_KEY_K)) state = GameState::GAME;
             textRenderer.RenderText("This is a turret defend game.", 400.0f, 700.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
-            textRenderer.RenderText("The game ends when Fire extinguished.", 200.0f, 500.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
+            textRenderer.RenderText("The game ends when \"Fire\" extinguished.", 200.0f, 500.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
             textRenderer.RenderText("1. Press J to creat cannon.", 200.0f, 400.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
             textRenderer.RenderText("2. Press WASD to move the cannon.", 200.0f, 370.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
             textRenderer.RenderText("3. press K to deploy.", 200.0f, 340.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
@@ -117,7 +117,11 @@ void VanillaEngine::update(void)
         }
         else
         {   // Mune
-            
+            glDisable(GL_BLEND);
+
+            std::string healthUI(ObjectManager::getInstance().FindTerminalHealth(), 'x');
+
+            textRenderer.RenderText(healthUI, 100.0f, 700.0f, 1.0f, glm::vec3(0.7, 0.7f, 0.0f));
             ObjectManager::getInstance().update();
             PhysicsManager::getInstance().update();
 
