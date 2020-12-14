@@ -15,7 +15,7 @@ deploy
 
 Body
 Circle
-1.6
+0.2
 Velocity
 0.15
 
