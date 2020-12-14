@@ -32,6 +32,7 @@ private:
 	void createObj();
 	void createEnemy();
 	float timer;	// used to create enemy
+	float totalTime;
 
 };
 
