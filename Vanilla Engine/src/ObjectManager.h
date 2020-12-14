@@ -17,6 +17,7 @@ public:
 	bool find(GameObject* object) const;
 	GameObject* findEnemy(bool isHostile);
 
+
 	void render( Shader& shader ) const;
 
 	void close( void );
@@ -29,6 +30,8 @@ public:
 	std::vector<GameObject *> GameObjects;
 private:
 	void createObj();
+	void createEnemy();
+	float timer;	// used to create enemy
 
 };
 

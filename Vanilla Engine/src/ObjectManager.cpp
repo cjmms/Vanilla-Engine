@@ -2,6 +2,7 @@
 #include "ResourceManager.h"
 #include "InputManager.h"
 #include <ft2build.h>
+#include "FPSController.h"
 
 ObjectManager::ObjectManager()
 {}
@@ -14,14 +15,21 @@ ObjectManager::~ObjectManager()
 
 int ObjectManager::FindTerminalHealth()
 {
-	int health = 0;
+	//int health = 0;
 	for (auto obj : GameObjects)
 	{
-		Attribute* attribute = static_cast<Attribute*>(obj->GetComponent(ATTRIBUTE));
-		if (attribute == nullptr) continue;
-		if (attribute->health > health) health = attribute->health;
+		//Attribute* attribute = static_cast<Attribute*>(obj->GetComponent(ATTRIBUTE));
+		//if (attribute == nullptr) continue;
+		//if (attribute->health > health) {
+		//	if (attribute->health <= 10)
+		//	health = attribute->health;
+			//std::cout << "set health to: " << health << std::endl;
+		//}
+		//std::cout << obj->sprite->address << std::endl;
+		if (obj->sprite->address == "res/Texture/bonfire.png") return obj->attribute->health;
 	}
-	return health;
+	
+	return 0;
 }
 
 
@@ -70,8 +78,40 @@ void ObjectManager::update( void )
 		GameObjects[i]->update();
 	
 	if (InputManager::getInstance().keyIsPressed(GLFW_KEY_J)) createObj();
+	createEnemy();
 }
 
+
+
+void ObjectManager::createEnemy()
+{
+	timer -= FPSController::getInstance().getFrameTime();
+
+	if (timer < 0.0f)
+	{
+		timer = 2000;
+		GameObject* obj = ResourceManager::getInstance().LoadGameObject("res/Data/Enemy.txt");
+
+		float x = rand() % 1 + 2;
+		float sign = rand() % 2;
+		x = sign > 0 ? x : -x;
+
+		obj->transform->position.x = x;
+
+		float y = rand() % 1 + 2;
+		sign = rand() % 2;
+		std::cout << "sign: " << sign << std::endl;
+		y = sign > 0 ? y : -y;
+
+		obj->transform->position.y = y;
+	}
+
+
+
+	//GameObject* obj = ResourceManager::getInstance().LoadGameObject("res/Data/Enemy.txt");
+	//obj->transform->position.x = 2;
+	//obj->transform->position.y = 2;
+}
 
 
 void ObjectManager::createObj()

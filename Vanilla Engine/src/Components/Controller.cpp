@@ -45,6 +45,8 @@ void Controller::move()
     if (InputManager::getInstance().keyIsPressed(GLFW_KEY_S)) transform->moveDown();
     if (InputManager::getInstance().keyIsPressed(GLFW_KEY_D)) transform->moveRight();
 
+
+    std::cout << "position: " << transform->position.x << ", " << transform->position.y << std::endl;
 }
 
 

@@ -64,7 +64,8 @@ enum GameState
 {
     LOGO,
     INTRO,
-    GAME
+    GAME,
+    GAMEOVER
 };
 
 
@@ -89,6 +90,7 @@ void VanillaEngine::update(void)
         shader.setMat4("Projection", pers);
         shader.setMat4("View", lookat);
 
+        int health = 100;
 
         if (state == GameState::LOGO)
         {
@@ -115,15 +117,9 @@ void VanillaEngine::update(void)
             textRenderer.RenderText("3. press K to deploy.", 200.0f, 340.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
             textRenderer.RenderText("Press K to Continue", 500.0f, 100.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
         }
-        else
+        else if (state == GameState::GAME)
         {   // Mune
-            glDisable(GL_BLEND);
-
-            int length = ObjectManager::getInstance().FindTerminalHealth();
-            //std::cout << "length: " <<  length << std::endl;
-            std::string healthUI(length, 'x');
-
-            textRenderer.RenderText(healthUI, 100.0f, 700.0f, 1.0f, glm::vec3(0.7, 0.7f, 0.0f));
+           
             ObjectManager::getInstance().update();
             PhysicsManager::getInstance().update();
 
@@ -137,7 +133,31 @@ void VanillaEngine::update(void)
                 ObjectManager::getInstance().close();
                 ResourceManager::getInstance().LoadLevel("res/Data/Level.txt");
             }
+
+            glDisable(GL_BLEND);
+            health = ObjectManager::getInstance().FindTerminalHealth();
+            //std::cout <<  "health: " << health <<  std::endl;
+            std::string healthUI(health, 'x');
+            if (health == 0) state = GAMEOVER;
+
+            textRenderer.RenderText(healthUI, 100.0f, 700.0f, 1.0f, glm::vec3(0.7, 0.7f, 0.0f));
+
+
         }
+        else {
+            glEnable(GL_BLEND);
+            textRenderer.RenderText("Game Over", 700.0f, 400.0f, 1.0f, glm::vec3(0.3, 0.7f, 0.9f));
+            textRenderer.RenderText("Press K to play again.", 500.0f, 100.0f, 0.5f, glm::vec3(0.3, 0.7f, 0.9f));
+            if (InputManager::getInstance().keyIsPressed(GLFW_KEY_K))
+            {
+                state = GameState::GAME;
+                health = 100;
+                ObjectManager::getInstance().close();
+                ResourceManager::getInstance().LoadLevel("res/Data/Level.txt");
+            }
+        }
+
+        
 
         glfwSwapBuffers(window);
     }
